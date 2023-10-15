@@ -13,21 +13,14 @@ This project will enhance the efficiency of The Cube, a place where hundreds of 
 #### For Developers:
 
 This program is about applying what you already know and learning even more! Any previous experience in these areas would be a bonus, but it's not a requirement:
-
-**Web Development:** Some familiarity with both front-end and back-end technologies.
-
-**API Integrations:** If you've worked with API integrations, especially Square terminal's, that would be great.
-
-**Domain knowledge:** Understanding students who go to the CUBE, why it’s important, and how inventory systems usually work are preferable.
+- **Web Development:** Some familiarity with both front-end and back-end technologies.
+- **API Integrations:** If you've worked with API integrations, especially Square terminal's, that would be great.
+- **Domain knowledge:** Understanding students who go to the CUBE, why it’s important, and how inventory systems usually work are preferable.
 
 #### For Tech Leads:
 
 As a Tech Lead, you should have a strong foundation in the skills above, along with:
-
-**Firmware & Software Integrations:** Depending on your plan, you may need to integrate the square reader with other technologies.
-
-**Team Leadership:** The ability to guide and coordinate a team of developers is a must.
-
-**User Experience Design:** The ability to guide the team in creating a user-friendly system.
-
-**Advanced features:** If you have experience with building tools with notifications, or that deal with sensitive data like financial data, that would be a plus!
+- **Firmware & Software Integrations:** Depending on your plan, you may need to integrate the square reader with other technologies.
+- **Team Leadership:** The ability to guide and coordinate a team of developers is a must.
+- **User Experience Design:** The ability to guide the team in creating a user-friendly system.
+- **Advanced features:** If you have experience with building tools with notifications, or that deal with sensitive data like financial data, that would be a plus!
