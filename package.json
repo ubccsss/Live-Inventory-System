@@ -1,0 +1,23 @@
+{
+  "name": "Live-Inventory-System",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "repository": "https://github.com/ubccsss/Live-Inventory-System.git",
+  "author": "CSSS",
+  "license": "MIT",
+  "dependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "http": "^0.0.1-security",
+    "ts-node": "^10.9.2",
+    "tsc": "^2.0.4",
+    "typescript": "^5.3.3"
+  },
+  "scripts": {
+    "start": "ts-node src/App.ts"
+  }
+}
