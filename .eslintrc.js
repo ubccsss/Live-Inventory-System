@@ -1,31 +1,31 @@
 module.exports = {
-	"env": {
-		"browser": true,
-		"es6": true,
-		"node": true
+	env: {
+		browser: true,
+		es6: true,
+		node: true
 	},
-	"parser": "@typescript-eslint/parser",
-	"parserOptions": {
-		"project": "tsconfig.json",
-		"sourceType": "module"
+	parser: "@typescript-eslint/parser",
+	parserOptions: {
+		project: "tsconfig.json",
+		sourceType: "module"
 	},
-	"plugins": [
+	plugins: [
 		"@typescript-eslint",
 		"jsdoc",
 		"import"
 	],
-	"extends": [
+	extends: [
 		"eslint:recommended",
 		"plugin:@typescript-eslint/recommended",
 		"plugin:import/recommended",
 		"plugin:import/typescript"
 	],
-	"overrides": [
+	overrides: [
 		{
-			"files": [
+			files: [
 				"**/*.spec.ts"
 			],
-			"rules": {
+			rules: {
 				"max-lines": "off",
 				"max-lines-per-function": "off",
 				"no-unused-expressions": "off",
@@ -33,31 +33,31 @@ module.exports = {
 			}
 		}
 	],
-	"rules": {
+	rules: {
 		"@typescript-eslint/array-type": [
 			"error",
 			{
-				"default": "array-simple"
+				default: "array-simple"
 			}
 		],
 		"@typescript-eslint/ban-types": [
 			"error",
 			{
-				"types": {
-					"Object": "Avoid using the `Object` type. Did you mean `object`?",
-					"Function": "Avoid using the `Function` type. Prefer a specific function type, like `() => void`.",
-					"Boolean": "Avoid using the `Boolean` type. Did you mean `boolean`?",
-					"Number": "Avoid using the `Number` type. Did you mean `number`?",
-					"String": "Avoid using the `String` type. Did you mean `string`?",
-					"Symbol": "Avoid using the `Symbol` type. Did you mean `symbol`?"
+				types: {
+					Object: "Avoid using the `Object` type. Did you mean `object`?",
+					Function: "Avoid using the `Function` type. Prefer a specific function type, like `() => void`.",
+					Boolean: "Avoid using the `Boolean` type. Did you mean `boolean`?",
+					Number: "Avoid using the `Number` type. Did you mean `number`?",
+					String: "Avoid using the `String` type. Did you mean `string`?",
+					Symbol: "Avoid using the `Symbol` type. Did you mean `symbol`?"
 				}
 			}
 		],
 		"@typescript-eslint/explicit-member-accessibility": [
 			"error",
 			{
-				"overrides": {
-					"constructors": "off"
+				overrides: {
+					constructors: "off"
 				}
 			}
 		],
@@ -66,14 +66,14 @@ module.exports = {
 		"@typescript-eslint/naming-convention": [
 			"error",
 			{
-				"selector": "typeLike",
-				"format": [
+				selector: "typeLike",
+				format: [
 					"PascalCase"
 				]
 			},
 			{
-				"selector": "variable",
-				"format": [
+				selector: "variable",
+				format: [
 					"camelCase",
 					"PascalCase",
 					"UPPER_CASE"
@@ -102,29 +102,29 @@ module.exports = {
 			"error",
 			"always",
 			{
-				"null": "ignore"
+				null: "ignore"
 			}
 		],
 		"indent": [
 			"error",
 			"tab",
 			{
-				"ignoreComments": true,
-				"SwitchCase": 1
+				ignoreComments: true,
+				SwitchCase: 1
 			}
 		],
 		"max-len": [
 			"error",
 			{
-				"code": 120,
-				"ignoreComments": true
+				code: 120,
+				ignoreComments: true
 			}
 		],
 		"max-lines-per-function": [
 			"error",
 			{
-				"max": 50,
-				"skipComments": true
+				max: 50,
+				skipComments: true
 			}
 		],
 		"max-lines": [
@@ -159,7 +159,7 @@ module.exports = {
 			"error",
 			"double",
 			{
-				"avoidEscape": true
+				avoidEscape: true
 			}
 		],
 		"radix": "error",
@@ -167,17 +167,17 @@ module.exports = {
 		"space-before-function-paren": [
 			"error",
 			{
-				"anonymous": "ignore",
-				"named": "ignore",
-				"asyncArrow": "always"
+				anonymous: "ignore",
+				named: "ignore",
+				asyncArrow: "always"
 			}
 		],
 		"space-infix-ops": "error",
 		"space-unary-ops": [
 			"error",
 			{
-				"words": true,
-				"nonwords": false
+				words: true,
+				nonwords: false
 			}
 		],
 		"spaced-comment": "error",
@@ -190,7 +190,7 @@ module.exports = {
 			"error",
 			"always",
 			{
-				"exceptAfterSingleLine": true
+				exceptAfterSingleLine: true
 			}
 		],
 		"max-nested-callbacks": [
@@ -199,7 +199,7 @@ module.exports = {
 		],
 		"max-statements-per-line": "error"
 	},
-	"ignorePatterns": [
+	ignorePatterns: [
 		"frontend/**/*"
 	]
 };
