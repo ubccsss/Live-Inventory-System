@@ -3,16 +3,16 @@ import * as http from "http";
 import cors from "cors";
 
 export default class Server {
-    private readonly port: number;
-    private express: Application;
-    private server: http.Server | undefined;
-    constructor(port: number) {
-        console.info(`Server::<init>( ${port} )`)
-        this.port = port;
-        this.express = express();
-        this.registerMiddleware();
-        this.registerRoutes();
-    }
+	private readonly port: number;
+	private express: Application;
+	public server: http.Server | undefined;
+	constructor(port: number) {
+		console.info(`Server::<init>( ${port} )`);
+		this.port = port;
+		this.express = express();
+		this.registerMiddleware();
+		this.registerRoutes();
+	}
 
 	public start(): Promise<void> {
 		return new Promise((resolve, reject) => {
@@ -50,14 +50,14 @@ export default class Server {
 		});
 	}
 
-    private registerMiddleware() {
-        this.express.use(express.json());
-        this.express.use(cors());
-    }
+	private registerMiddleware() {
+		this.express.use(express.json());
+		this.express.use(cors());
+	}
 
-    private registerRoutes() {
-        this.express.get("/echo/:msg", Server.echo)
-    }
+	private registerRoutes() {
+		this.express.get("/echo/:msg", Server.echo);
+	}
 
 	private static echo(req: Request, res: Response) {
 		try {
