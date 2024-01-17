@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  postgres:
+    container_name: postgres-db
+    image: postgres
+    hostname: localhost
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - ${PWD}/${POSTGRES_DATA_PATH}:/var/lib/postgresql/data
+      - ${PWD}/${POSTGRES_INIT_PATH}:/docker-entrypoint-initdb.d/
+    restart: unless-stopped
