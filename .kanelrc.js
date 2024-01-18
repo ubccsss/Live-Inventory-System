@@ -1,5 +1,6 @@
 const path = require("path");
 const { recase } = require('@kristiandupont/recase');
+const resolveType = require('kanel/build/generators/resolveType').default;
 
 
 const toPascalCase = recase('snake', 'pascal');
@@ -36,15 +37,29 @@ module.exports = {
 
   // This implementation will generate flavored instead of branded types.
   // See: https://spin.atomicobject.com/2018/01/15/typescript-flexible-nominal-typing/
-  generateIdentifierType: (c, d) => {
+  generateIdentifierType: (c, d, config) => {
     // Id columns are already prefixed with the table name, so we don't need to add it here
     const name = toPascalCase(c.name);
+    const innerType = resolveType(c, d, {
+      ...config,
+      // Explicitly disable identifier resolution so we get the actual inner type here
+      generateIdentifierType: undefined,
+    });
+    const imports = [];
+
+    let type = innerType;
+    if (typeof innerType === "object") {
+      // Handle non-primitives
+      type = innerType.name;
+      imports.push(...innerType.typeImports);
+    }
 
     return {
       declarationType: 'typeDeclaration',
       name,
       exportAs: 'named',
-      typeDefinition: [`number & {__flavor?: "${name}"}`],
+      typeDefinition: [`${type} & {__flavor?: "${name}"}`],
+      typeImports: imports,
       comment: [`Identifier type for ${d.name}`],
     };
   },

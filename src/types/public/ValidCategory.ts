@@ -1,5 +1,5 @@
 /** Identifier type for valid_category */
-export type Category = number & {__flavor?: "Category"};
+export type Category = string & {__flavor?: "Category"};
 
 /** Represents the table public.valid_category */
 export default interface ValidCategory {
