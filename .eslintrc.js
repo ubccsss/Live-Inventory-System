@@ -163,7 +163,8 @@ module.exports = {
 			}
 		],
 		"radix": "error",
-		"semi": "error",
+		"semi": "off",
+		"@typescript-eslint/semi": ["error"],
 		"space-before-function-paren": [
 			"error",
 			{

@@ -45,6 +45,8 @@
     "test": "test"
   },
   "devDependencies": {
-    "@types/pg": "^8.10.9"
+    "@kristiandupont/recase": "^1.2.1",
+    "@types/pg": "^8.10.9",
+    "kanel": "^3.8.2"
   }
 }
