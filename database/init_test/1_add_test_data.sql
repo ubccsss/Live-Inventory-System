@@ -198,7 +198,7 @@ WHERE
 	email = 'george@ubccsss.org';
 
 INSERT INTO
-	reimbursement_item (
+	reimbursement_item_box (
 		reimbursement_id,
 		item_box_id,
 		item_quantity

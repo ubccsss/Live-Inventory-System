@@ -1,8 +1,8 @@
 import {type ReimbursementId} from "./Reimbursement";
 import {type ItemBoxId} from "./ItemBox";
 
-/** Represents the table public.reimbursement_item */
-export default interface ReimbursementItem {
+/** Represents the table public.reimbursement_item_box */
+export default interface ReimbursementItemBox {
   reimbursement_id: ReimbursementId;
 
   item_box_id: ItemBoxId;
@@ -10,8 +10,8 @@ export default interface ReimbursementItem {
   item_quantity: number;
 }
 
-/** Represents the initializer for the table public.reimbursement_item */
-export interface ReimbursementItemInitializer {
+/** Represents the initializer for the table public.reimbursement_item_box */
+export interface ReimbursementItemBoxInitializer {
   reimbursement_id: ReimbursementId;
 
   item_box_id: ItemBoxId;
@@ -19,8 +19,8 @@ export interface ReimbursementItemInitializer {
   item_quantity: number;
 }
 
-/** Represents the mutator for the table public.reimbursement_item */
-export interface ReimbursementItemMutator {
+/** Represents the mutator for the table public.reimbursement_item_box */
+export interface ReimbursementItemBoxMutator {
   reimbursement_id?: ReimbursementId;
 
   item_box_id?: ItemBoxId;

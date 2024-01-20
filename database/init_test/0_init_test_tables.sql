@@ -57,9 +57,9 @@ CREATE TABLE reimbursement (
 	user_id INT NOT NULL REFERENCES csss_user ON UPDATE CASCADE ON DELETE RESTRICT -- don't allow an officer to be deleted if they have reimbursements
 );
 
-CREATE TABLE reimbursement_item (
+CREATE TABLE reimbursement_item_box (
 	reimbursement_id INT NOT NULL REFERENCES reimbursement ON UPDATE CASCADE ON DELETE CASCADE, -- if we delete a reimbursement, also delete its details
 	item_box_id INT NOT NULL REFERENCES item_box ON UPDATE CASCADE ON DELETE RESTRICT, -- don't allow an item box that's in a transaction to be deleted
 	item_quantity INT NOT NULL CONSTRAINT positive_quantity CHECK (item_quantity > 0),
-	CONSTRAINT reimbursement_item_pk PRIMARY KEY (reimbursement_id, item_box_id)
+	CONSTRAINT reimbursement_item_box_pk PRIMARY KEY (reimbursement_id, item_box_id)
 );

@@ -1,6 +1,7 @@
-import ItemIndividual, {ItemId, ItemIndividualInitializer, ItemIndividualMutator} from "../types/public/ItemIndividual";
-import {Category} from "../types/public/ValidCategory";
-import {SimpleCrudQueryable} from "./Queries";
+import ItemIndividual,
+{ItemId, ItemIndividualInitializer, ItemIndividualMutator} from "../../types/public/ItemIndividual";
+import {Category} from "../../types/public/ValidCategory";
+import {SimpleCrudQueryable} from "../Queryable";
 
 const simpleCrudQueries:
 SimpleCrudQueryable<ItemIndividual, ItemIndividualInitializer, ItemIndividualMutator, ItemId> = {
@@ -8,7 +9,7 @@ SimpleCrudQueryable<ItemIndividual, ItemIndividualInitializer, ItemIndividualMut
 		throw new Error("Method not implemented.");
 	},
 
-	read(primaryKey: ItemId): ItemIndividual {
+	read(itemId: ItemId): ItemIndividual {
 		throw new Error("Method not implemented.");
 	},
 
@@ -16,11 +17,11 @@ SimpleCrudQueryable<ItemIndividual, ItemIndividualInitializer, ItemIndividualMut
 		throw new Error("Method not implemented.");
 	},
 
-	update(primaryKey: ItemId, mutateProps: ItemIndividualMutator): void {
+	update(itemId: ItemId, mutateObject: ItemIndividualMutator): void {
 		throw new Error("Method not implemented.");
 	},
 
-	delete(primaryKey: ItemId): void {
+	delete(itemId: ItemId): void {
 		throw new Error("Method not implemented.");
 	}
 };
