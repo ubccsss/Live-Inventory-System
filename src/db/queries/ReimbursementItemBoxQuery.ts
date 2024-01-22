@@ -33,9 +33,20 @@ const compositeCrudQueries:
 };
 
 const reimbursementItemBoxQueries = {
+	/**
+	 * Searches in the table for all ReimbursementItemBoxes that are linked to a particular item box.
+	 * @param itemBoxId Foreign key of item box to search for
+	 * @returns Array of ReimbursementItemBoxes linked to the given itemBoxId
+	 */
 	readAllFromItemBox(itemBoxId: ItemBoxId): ReimbursementItemBox[] {
 		throw new Error("Method not implemented.");
 	},
+
+	/**
+	 * Searches in the table for all ReimbursementItemBoxes that are linked to a particular reimbursement.
+	 * @param reimbursementId Foreign key of reimbursement to search for
+	 * @returns Array of ReimbursementItemBoxes linked to the given reimbursementId
+	 */
 	readAllFromReimbursement(reimbursementId: ReimbursementId): ReimbursementItemBox[] {
 		throw new Error("Method not implemented.");
 	}

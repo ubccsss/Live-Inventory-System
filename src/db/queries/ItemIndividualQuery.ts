@@ -27,6 +27,11 @@ SimpleCrudQueryable<ItemIndividual, ItemIndividualInitializer, ItemIndividualMut
 };
 
 const itemIndividualQueries = {
+	/**
+	 * Searches for all items that have the specified category.
+	 * @param category Category to search within
+	 * @returns All items in the table with the specified category
+	 */
 	readAllFromCategory(category: Category): ItemIndividual {
 		throw new Error("Method not implemented.");
 	}

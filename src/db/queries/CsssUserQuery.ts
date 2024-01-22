@@ -28,6 +28,12 @@ SimpleCrudQueryable<CsssUser, CsssUserInitializer, CsssUserMutator, UserId> = {
 };
 
 const csssUserQueries = {
+	/**
+	 * Tries to authenticate the user with the given credentials.
+	 * @param email Email of the given user
+	 * @param password Password hash of the given user
+	 * @returns The CsssUser with the given credentials, or null if no user found
+	 */
 	authenticateUser(email: string, password: string): CsssUser {
 		throw new Error("Method not implemented.");
 	}

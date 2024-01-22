@@ -33,9 +33,20 @@ const compositeCrudQueries:
 };
 
 const transactionItemQueries = {
+	/**
+	 * Searches in the table for all TransactionItems that are linked to a particular item.
+	 * @param itemId Foreign key of item to search for
+	 * @returns Array of TransactionItems linked to the given itemId
+	 */
 	readAllFromItem(itemId: ItemId): TransactionItem[] {
 		throw new Error("Method not implemented.");
 	},
+
+	/**
+	 * Searches in the table for all TransactionItems that are linked to a particular transaction.
+	 * @param transactionId Foreign key of transaction to search for
+	 * @returns Array of TransactionItems linked to the given transactionId
+	 */
 	readAllFromTransaction(transactionId: TransactionId): TransactionItem[] {
 		throw new Error("Method not implemented.");
 	}
