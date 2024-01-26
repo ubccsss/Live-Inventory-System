@@ -2,6 +2,8 @@
 	"compilerOptions": {
         "target": "ES6",
 		"outDir": "dist",
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
 		"noImplicitAny": true,
 		"removeComments": true,
 		"preserveConstEnums": true,

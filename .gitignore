@@ -39,3 +39,7 @@ lib/*.js
 test/*.js
 *.map
 node_modules
+
+database/data/
+database/test_data/
+.env
