@@ -14,7 +14,7 @@ CREATE TABLE item_individual (
 	reservable BOOL NOT NULL,
 	quantity_remaining INT NOT NULL CONSTRAINT nonneg_quantity CHECK (quantity_remaining >= 0),
 	low_stock_threshold INT NOT NULL CONSTRAINT nonneg_threshold CHECK (low_stock_threshold >= 0),
-	last_restocked TIMESTAMP, -- maybe non null to allow for initial setup?
+	last_restocked DATE, -- maybe non null to allow for initial setup?
 	max_quantity_per_transaction INT NOT NULL CONSTRAINT positive_max CHECK (max_quantity_per_transaction > 0)
 );
 
