@@ -31,7 +31,7 @@ VALUES
 		FALSE,
 		12,
 		5,
-		CURRENT_TIMESTAMP,
+		'2023-12-20',
 		3
 	),
 	(
@@ -55,7 +55,7 @@ VALUES
 		FALSE,
 		6,
 		2,
-		CURRENT_TIMESTAMP,
+		'2023-12-24',
 		1
 	);
 
@@ -90,10 +90,10 @@ WHERE
 	name = 'Coca-Cola';
 
 INSERT INTO
-	transaction (total, payer_email)
+	transaction (total, transaction_time, payer_email)
 VALUES
-	(4.00, 'john@example.com'),
-	(2.00, 'amy@example.com');
+	(4.00, '2024-01-10 14:00:36 -8:00', 'john@example.com'),
+	(2.00, '2024-01-21 10:21:11 -8:00', 'amy@example.com');
 
 INSERT INTO
 	transaction_item (transaction_id, item_id, item_quantity)
@@ -171,9 +171,9 @@ INSERT INTO
 		user_id
 	)
 SELECT
-	'url',
+	'url1',
 	5.00,
-	CURRENT_TIMESTAMP,
+	'2024-01-02 04:05:06 -8:00',
 	user_id
 FROM
 	csss_user
@@ -188,9 +188,9 @@ INSERT INTO
 		user_id
 	)
 SELECT
-	'url',
+	'url2',
 	20.00,
-	CURRENT_TIMESTAMP,
+	'2024-01-08 15:20:00 -8:00',
 	user_id
 FROM
 	csss_user
@@ -204,6 +204,6 @@ INSERT INTO
 		item_quantity
 	)
 VALUES
-	(1, 1, 1),
+	(1, 1, 2),
 	(2, 2, 1),
 	(2, 3, 1);
