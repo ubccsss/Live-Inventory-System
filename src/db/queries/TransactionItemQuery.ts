@@ -11,23 +11,23 @@ const compositeCrudQueries:
 		TransactionId,
 		ItemId>
 = {
-	create(object: TransactionItemInitializer): void {
+	async create(object: TransactionItemInitializer): Promise<TransactionItem> {
 		throw new Error("Method not implemented.");
 	},
 
-	read(transactionId: TransactionId, itemId: ItemId): TransactionItem {
+	async read(transactionId: TransactionId, itemId: ItemId): Promise<TransactionItem> {
 		throw new Error("Method not implemented.");
 	},
 
-	readAll(): TransactionItem[] {
+	async readAll(): Promise<TransactionItem[]> {
 		throw new Error("Method not implemented.");
 	},
 
-	update(transactionId: TransactionId, itemId: ItemId, mutateObject: TransactionItemMutator): void {
+	async update(transactionId: TransactionId, itemId: ItemId, mutateObject: TransactionItemMutator): Promise<void> {
 		throw new Error("Method not implemented.");
 	},
 
-	delete(transactionId: TransactionId, itemId: ItemId): void {
+	async delete(transactionId: TransactionId, itemId: ItemId): Promise<void> {
 		throw new Error("Method not implemented.");
 	}
 };
@@ -36,18 +36,18 @@ const transactionItemQueries = {
 	/**
 	 * Searches in the table for all TransactionItems that are linked to a particular item.
 	 * @param itemId Foreign key of item to search for
-	 * @returns Array of TransactionItems linked to the given itemId
+	 * @returns Promise resolving to array of TransactionItems linked to the given itemId
 	 */
-	readAllFromItem(itemId: ItemId): TransactionItem[] {
+	async readAllFromItem(itemId: ItemId): Promise<TransactionItem[]> {
 		throw new Error("Method not implemented.");
 	},
 
 	/**
 	 * Searches in the table for all TransactionItems that are linked to a particular transaction.
 	 * @param transactionId Foreign key of transaction to search for
-	 * @returns Array of TransactionItems linked to the given transactionId
+	 * @returns Promise resolving to array of TransactionItems linked to the given transactionId
 	 */
-	readAllFromTransaction(transactionId: TransactionId): TransactionItem[] {
+	async readAllFromTransaction(transactionId: TransactionId): Promise<TransactionItem[]> {
 		throw new Error("Method not implemented.");
 	}
 };

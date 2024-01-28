@@ -5,24 +5,24 @@ import {SimpleCrudQueryable} from "../Queryable";
 
 const simpleCrudQueries:
 SimpleCrudQueryable<CsssUser, CsssUserInitializer, CsssUserMutator, UserId> = {
-	create(object: CsssUserInitializer): void {
+	async create(object: CsssUserInitializer): Promise<CsssUser> {
 		throw new Error("Method not implemented.");
 	},
 
-	read(userId: UserId): CsssUser {
+	async read(userId: UserId): Promise<CsssUser> {
 		throw new Error("Method not implemented.");
 	},
 
 	// should we allow?
-	readAll(): CsssUser[] {
+	async readAll(): Promise<CsssUser[]> {
 		throw new Error("Method not implemented.");
 	},
 
-	update(userId: UserId, mutateObject: CsssUserMutator): void {
+	async update(userId: UserId, mutateObject: CsssUserMutator): Promise<void> {
 		throw new Error("Method not implemented.");
 	},
 
-	delete(userId: UserId): void {
+	async delete(userId: UserId): Promise<void> {
 		throw new Error("Method not implemented.");
 	}
 };
@@ -32,9 +32,9 @@ const csssUserQueries = {
 	 * Tries to authenticate the user with the given credentials.
 	 * @param email Email of the given user
 	 * @param password Password hash of the given user
-	 * @returns The CsssUser with the given credentials, or null if no user found
+	 * @returns Promise resolving to the CsssUser with the given credentials, or null if no user found
 	 */
-	authenticateUser(email: string, password: string): CsssUser {
+	async authenticateUser(email: string, password: string): Promise<CsssUser> {
 		throw new Error("Method not implemented.");
 	}
 };
