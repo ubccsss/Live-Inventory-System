@@ -10,7 +10,6 @@
 		"sourceMap": true,
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
-		//"suppressImplicitAnyIndexErrors": true,
 		"typeRoots": [
 			"./node_modules/@types"
 		]

@@ -31,5 +31,44 @@ describe("Express server tests", function() {
 				console.log(err);
 			}
 		});
+
+		it ("GET test with data", async () => {
+			try {
+				console.log("Before request");
+				return request(server.server)
+					.get("/items")
+					.set("Accept", "application/json")
+					.then((res) => {
+						expect(res.status).to.be.equal(200);
+						expect(res.body).to.be.equal([
+							{
+								name: "Coca Cola",
+								description: "A 355 ml can of Coca Cola.",
+								price: 0.50,
+								category: "Fridge",
+								img_url: "www.google.com",
+								reservable: false,
+								quantity_remaining: 6,
+								low_stock_threshold: 2,
+								last_restocked: Date.now() - 3 * 24 * 60 * 60 * 1000,
+								max_quantity_per_transaction: 6
+							},
+							{
+								name: "Bubly",
+								description: "A 355 ml can of Bubly",
+								price: 1.00,
+								category: "Fridge",
+								img_url: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Bubly_logo_2018.png",
+								reservabe: false,
+								quantity_remaining: 6,
+								low_stock_threshold: 2,
+								last_restocked:Date.now() - 5 * 24 * 60 * 60 * 1000
+							}
+						]);
+					});
+			} catch (err) {
+				console.log(err);
+			}
+		});
 	});
 });
