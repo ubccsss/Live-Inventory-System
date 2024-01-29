@@ -17,7 +17,8 @@ SimpleCrudQueryable<ItemIndividual, ItemIndividualInitializer, ItemIndividualMut
 		throw new Error("Method not implemented.");
 	},
 
-	async update(itemId: ItemId, mutateObject: ItemIndividualMutator): Promise<void> {
+	async update(itemId: ItemId, mutateObject: ItemIndividualMutator, returnUpdated = false):
+	Promise<ItemIndividual|void> {
 		throw new Error("Method not implemented.");
 	},
 
