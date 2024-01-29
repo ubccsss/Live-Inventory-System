@@ -4,23 +4,23 @@ import {SimpleCrudQueryable} from "../Queryable";
 
 const simpleCrudQueries:
 SimpleCrudQueryable<ItemBox, ItemBoxInitializer, ItemBoxMutator, ItemBoxId> = {
-	create(object: ItemBoxInitializer): void {
+	async create(object: ItemBoxInitializer): Promise<ItemBox> {
 		throw new Error("Method not implemented.");
 	},
 
-	read(itemBoxId: ItemBoxId): ItemBox {
+	async read(itemBoxId: ItemBoxId): Promise<ItemBox> {
 		throw new Error("Method not implemented.");
 	},
 
-	readAll(): ItemBox[] {
+	async readAll(): Promise<ItemBox[]> {
 		throw new Error("Method not implemented.");
 	},
 
-	update(itemBoxId: ItemBoxId, mutateObject: ItemBoxMutator): void {
+	async update(itemBoxId: ItemBoxId, mutateObject: ItemBoxMutator, returnUpdated = false): Promise<ItemBox|void> {
 		throw new Error("Method not implemented.");
 	},
 
-	delete(itemBoxId: ItemBoxId): void {
+	async delete(itemBoxId: ItemBoxId): Promise<void> {
 		throw new Error("Method not implemented.");
 	}
 };

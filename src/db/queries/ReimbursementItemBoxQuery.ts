@@ -11,23 +11,27 @@ const compositeCrudQueries:
 		ReimbursementId,
 		ItemBoxId>
 = {
-	create(object: ReimbursementItemBoxInitializer): void {
+	async create(object: ReimbursementItemBoxInitializer): Promise<ReimbursementItemBox> {
 		throw new Error("Method not implemented.");
 	},
 
-	read(reimbursementId: ReimbursementId, itemBoxId: ItemBoxId): ReimbursementItemBox {
+	async read(reimbursementId: ReimbursementId, itemBoxId: ItemBoxId): Promise<ReimbursementItemBox> {
 		throw new Error("Method not implemented.");
 	},
 
-	readAll(): ReimbursementItemBox[] {
+	async readAll(): Promise<ReimbursementItemBox[]> {
 		throw new Error("Method not implemented.");
 	},
 
-	update(reimbursementId: ReimbursementId, pk2: ItemBoxId, mutateObject: ReimbursementItemBoxMutator): void {
+	async update(
+		reimbursementId: ReimbursementId,
+		pk2: ItemBoxId, mutateObject: ReimbursementItemBoxMutator,
+		returnUpdated = false
+	): Promise<ReimbursementItemBox|void> {
 		throw new Error("Method not implemented.");
 	},
 
-	delete(reimbursementId: ReimbursementId, pk2: ItemBoxId): void {
+	async delete(reimbursementId: ReimbursementId, pk2: ItemBoxId): Promise<void> {
 		throw new Error("Method not implemented.");
 	}
 };
@@ -36,18 +40,18 @@ const reimbursementItemBoxQueries = {
 	/**
 	 * Searches in the table for all ReimbursementItemBoxes that are linked to a particular item box.
 	 * @param itemBoxId Foreign key of item box to search for
-	 * @returns Array of ReimbursementItemBoxes linked to the given itemBoxId
+	 * @returns Promise resolving to array of ReimbursementItemBoxes linked to the given itemBoxId
 	 */
-	readAllFromItemBox(itemBoxId: ItemBoxId): ReimbursementItemBox[] {
+	async readAllFromItemBox(itemBoxId: ItemBoxId): Promise<ReimbursementItemBox[]> {
 		throw new Error("Method not implemented.");
 	},
 
 	/**
 	 * Searches in the table for all ReimbursementItemBoxes that are linked to a particular reimbursement.
 	 * @param reimbursementId Foreign key of reimbursement to search for
-	 * @returns Array of ReimbursementItemBoxes linked to the given reimbursementId
+	 * @returns Promise resolving to array of ReimbursementItemBoxes linked to the given reimbursementId
 	 */
-	readAllFromReimbursement(reimbursementId: ReimbursementId): ReimbursementItemBox[] {
+	async readAllFromReimbursement(reimbursementId: ReimbursementId): Promise<ReimbursementItemBox[]> {
 		throw new Error("Method not implemented.");
 	}
 };

@@ -5,23 +5,24 @@ import {SimpleCrudQueryable} from "../Queryable";
 
 const simpleCrudQueries:
 SimpleCrudQueryable<ItemIndividual, ItemIndividualInitializer, ItemIndividualMutator, ItemId> = {
-	create(object: ItemIndividualInitializer): void {
+	async create(object: ItemIndividualInitializer): Promise<ItemIndividual> {
 		throw new Error("Method not implemented.");
 	},
 
-	read(itemId: ItemId): ItemIndividual {
+	async read(itemId: ItemId): Promise<ItemIndividual> {
 		throw new Error("Method not implemented.");
 	},
 
-	readAll(): ItemIndividual[] {
+	async readAll(): Promise<ItemIndividual[]> {
 		throw new Error("Method not implemented.");
 	},
 
-	update(itemId: ItemId, mutateObject: ItemIndividualMutator): void {
+	async update(itemId: ItemId, mutateObject: ItemIndividualMutator, returnUpdated = false):
+	Promise<ItemIndividual|void> {
 		throw new Error("Method not implemented.");
 	},
 
-	delete(itemId: ItemId): void {
+	async delete(itemId: ItemId): Promise<void> {
 		throw new Error("Method not implemented.");
 	}
 };
@@ -30,9 +31,9 @@ const itemIndividualQueries = {
 	/**
 	 * Searches for all items that have the specified category.
 	 * @param category Category to search within
-	 * @returns All items in the table with the specified category
+	 * @returns Promise resolving to all items in the table with the specified category
 	 */
-	readAllFromCategory(category: Category): ItemIndividual {
+	async readAllFromCategory(category: Category): Promise<ItemIndividual> {
 		throw new Error("Method not implemented.");
 	}
 };
