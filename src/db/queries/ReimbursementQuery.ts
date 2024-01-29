@@ -17,7 +17,8 @@ SimpleCrudQueryable<Reimbursement, ReimbursementInitializer, ReimbursementMutato
 		throw new Error("Method not implemented.");
 	},
 
-	async update(reimbursementId: ReimbursementId, mutateObject: ReimbursementMutator): Promise<void> {
+	async update(reimbursementId: ReimbursementId, mutateObject: ReimbursementMutator, returnUpdated = false):
+	Promise<Reimbursement|void> {
 		throw new Error("Method not implemented.");
 	},
 
