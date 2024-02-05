@@ -25,7 +25,7 @@ VALUES
 	(
 		'Clif Bar',
 		'Yummy snack',
-		2.00,
+		200,
 		'food',
 		NULL,
 		FALSE,
@@ -37,7 +37,7 @@ VALUES
 	(
 		'Shin Ramen',
 		'Yummy treat',
-		3.00,
+		300,
 		'food',
 		NULL,
 		FALSE,
@@ -49,7 +49,7 @@ VALUES
 	(
 		'Coca-Cola',
 		'Yummy drink',
-		1.00,
+		100,
 		'drink',
 		NULL,
 		FALSE,
@@ -92,8 +92,8 @@ WHERE
 INSERT INTO
 	transaction (total, transaction_time, payer_email)
 VALUES
-	(4.00, '2024-01-10 14:00:36 -8:00', 'john@example.com'),
-	(2.00, '2024-01-21 10:21:11 -8:00', 'amy@example.com');
+	(400, '2024-01-10 14:00:36 -8:00', 'john@example.com'),
+	(200, '2024-01-21 10:21:11 -8:00', 'amy@example.com');
 
 INSERT INTO
 	transaction_item (transaction_id, item_id, item_quantity)
@@ -172,7 +172,7 @@ INSERT INTO
 	)
 SELECT
 	'url1',
-	5.00,
+	500,
 	'2024-01-02 04:05:06 -8:00',
 	user_id
 FROM
@@ -189,7 +189,7 @@ INSERT INTO
 	)
 SELECT
 	'url2',
-	20.00,
+	2000,
 	'2024-01-08 15:20:00 -8:00',
 	user_id
 FROM
