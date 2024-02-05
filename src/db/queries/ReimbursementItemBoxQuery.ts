@@ -1,7 +1,7 @@
-import {ItemBoxId} from "../../types/public/ItemBox";
-import {ReimbursementId} from "../../types/public/Reimbursement";
+import {ItemBoxId} from "../../types/db/public/ItemBox";
+import {ReimbursementId} from "../../types/db/public/Reimbursement";
 import ReimbursementItemBox,
-{ReimbursementItemBoxInitializer, ReimbursementItemBoxMutator} from "../../types/public/ReimbursementItemBox";
+{ReimbursementItemBoxInitializer, ReimbursementItemBoxMutator} from "../../types/db/public/ReimbursementItemBox";
 import {CompositeCrudQueryable} from "../Queryable";
 
 const compositeCrudQueries:
