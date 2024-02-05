@@ -1,6 +1,6 @@
 
 import Reimbursement,
-{ReimbursementId, ReimbursementInitializer, ReimbursementMutator} from "../../types/public/Reimbursement";
+{ReimbursementId, ReimbursementInitializer, ReimbursementMutator} from "../../types/db/public/Reimbursement";
 import {SimpleCrudQueryable} from "../Queryable";
 
 const simpleCrudQueries:

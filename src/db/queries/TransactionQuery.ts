@@ -1,5 +1,6 @@
 
-import Transaction, {TransactionId, TransactionInitializer, TransactionMutator} from "../../types/public/Transaction";
+import Transaction,
+{TransactionId, TransactionInitializer, TransactionMutator} from "../../types/db/public/Transaction";
 import {SimpleCrudQueryable} from "../Queryable";
 
 const simpleCrudQueries:
