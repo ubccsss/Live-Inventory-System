@@ -8,7 +8,7 @@ CREATE TABLE item_individual (
 	item_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
 	name TEXT NOT NULL UNIQUE,
 	description TEXT NOT NULL,
-	price DECIMAL(10, 2) NOT NULL CONSTRAINT nonneg_price CHECK (price >= 0),
+	price BIGINT NOT NULL CONSTRAINT nonneg_price CHECK (price >= 0),
 	category TEXT NOT NULL REFERENCES valid_category ON UPDATE CASCADE ON DELETE RESTRICT, -- don't allow a category row to be removed if an item references that row
 	img_url TEXT, -- img optional
 	reservable BOOL NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE item_box (
 
 CREATE TABLE transaction (
 	transaction_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-	total DECIMAL(10, 2) NOT NULL CONSTRAINT nonneg_total CHECK (total >= 0),
+	total BIGINT NOT NULL CONSTRAINT nonneg_total CHECK (total >= 0),
 	transaction_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- auto create transaction timestamp
 	payer_email TEXT CHECK (payer_email ~ '^[a-z0-9!.#$%&''*+/=?^_`{|}~-]+@([a-z0-9]+[.])+[a-z0-9]+$')
 );
@@ -51,7 +51,7 @@ CREATE TABLE csss_user (
 CREATE TABLE reimbursement (
 	reimbursement_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
 	receipt_img_url TEXT NOT NULL,
-	purchase_total DECIMAL(10, 2) NOT NULL CONSTRAINT positive_purchase_total CHECK (purchase_total > 0),
+	purchase_total BIGINT NOT NULL CONSTRAINT positive_purchase_total CHECK (purchase_total > 0),
 	purchase_date DATE NOT NULL,
 	reimbursed BOOL DEFAULT FALSE,
 	user_id INT NOT NULL REFERENCES csss_user ON UPDATE CASCADE ON DELETE RESTRICT -- don't allow an officer to be deleted if they have reimbursements

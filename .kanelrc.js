@@ -4,7 +4,6 @@ const resolveType = require('kanel/build/generators/resolveType').default;
 
 
 const toPascalCase = recase('snake', 'pascal');
-
 const fixImportFormatting = (path, lines, instantiatedConfig) => {
   return lines.map((line) => {
     if (line.includes("import ")) {
@@ -13,7 +12,6 @@ const fixImportFormatting = (path, lines, instantiatedConfig) => {
     return line
   })
 }
-
 const newlineAtEnd = (path, lines, instantiatedConfig) => {
   return [...lines, "\n"]
 }
@@ -26,13 +24,24 @@ module.exports = {
     password: "root",
     database: "test_data",
   },
-
   preDeleteOutputFolder: true,
-  outputPath: "./src/types",
+  outputPath: "./src/types/db",
 
+  // Postgres bigints are assumed to represent monetary values and converted to Dinero.js objects
   customTypeMap: {
     "pg_catalog.tsvector": "string",
     "pg_catalog.bpchar": "string",
+    "pg_catalog.int8": {
+      name: "Dinero",
+      typeImports: [
+        {
+          name: "Dinero",
+          path: "dinero.js",
+          isAbsolute: true,
+          isDefault: false
+        }
+      ]
+    }
   },
 
   // This implementation will generate flavored instead of branded types.
