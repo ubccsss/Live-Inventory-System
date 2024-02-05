@@ -82,4 +82,18 @@ describe("ItemIndividual Query Tests", () => {
 			expect(await ItemIndividualQuery.delete(-1)).to.be.false;
 		});
 	});
+
+	describe("readAllFromCategory()", () => {
+		it("returns array containing all items in category", async () => {
+			expect(await ItemIndividualQuery.readAllFromCategory("food")).
+				to.have.deep.members([TestItems.clifBar, TestItems.shinRamen]);
+			expect(await ItemIndividualQuery.readAllFromCategory("drink")).to.have.deep.members([TestItems.cocaCola]);
+		});
+		it("returns empty array if category has no items", async () => {
+			expect(await ItemIndividualQuery.readAllFromCategory("merch")).to.be.empty;
+		});
+		it("returns empty array if category is invalid", async () => {
+			expect(await ItemIndividualQuery.readAllFromCategory("fake")).to.be.empty;
+		});
+	});
 });
