@@ -18,6 +18,7 @@
     "@typescript-eslint/parser": "^6.15.0",
     "chai": "^5.0.0",
     "cors": "^2.8.5",
+    "dinero.js": "^1.9.1",
     "eslint": "^8.56.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsdoc": "^48.0.2",
@@ -46,6 +47,7 @@
   },
   "devDependencies": {
     "@kristiandupont/recase": "^1.2.1",
+    "@types/dinero.js": "^1.9.4",
     "@types/pg": "^8.10.9",
     "kanel": "^3.8.2"
   }

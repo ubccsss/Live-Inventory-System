@@ -1,3 +1,4 @@
+import {Dinero} from "dinero.js";
 import {type Category} from "./ValidCategory";
 
 /** Identifier type for item_individual */
@@ -11,7 +12,7 @@ export default interface ItemIndividual {
 
   description: string;
 
-  price: string;
+  price: Dinero;
 
   category: Category;
 
@@ -34,7 +35,7 @@ export interface ItemIndividualInitializer {
 
   description: string;
 
-  price: string;
+  price: Dinero;
 
   category: Category;
 
@@ -57,7 +58,7 @@ export interface ItemIndividualMutator {
 
   description?: string;
 
-  price?: string;
+  price?: Dinero;
 
   category?: Category;
 

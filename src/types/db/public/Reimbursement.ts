@@ -1,3 +1,4 @@
+import {Dinero} from "dinero.js";
 import {type UserId} from "./CsssUser";
 
 /** Identifier type for reimbursement */
@@ -9,7 +10,7 @@ export default interface Reimbursement {
 
   receipt_img_url: string;
 
-  purchase_total: string;
+  purchase_total: Dinero;
 
   purchase_date: Date;
 
@@ -22,7 +23,7 @@ export default interface Reimbursement {
 export interface ReimbursementInitializer {
   receipt_img_url: string;
 
-  purchase_total: string;
+  purchase_total: Dinero;
 
   purchase_date: Date;
 
@@ -36,7 +37,7 @@ export interface ReimbursementInitializer {
 export interface ReimbursementMutator {
   receipt_img_url?: string;
 
-  purchase_total?: string;
+  purchase_total?: Dinero;
 
   purchase_date?: Date;
 
