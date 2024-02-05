@@ -17,12 +17,11 @@ SimpleCrudQueryable<Transaction, TransactionInitializer, TransactionMutator, Tra
 		throw new Error("Method not implemented.");
 	},
 
-	async update(transactionId: TransactionId, mutateObject: TransactionMutator, returnUpdated = false):
-	Promise<Transaction|void> {
+	async update(transactionId: TransactionId, mutateObject: TransactionMutator): Promise<Transaction> {
 		throw new Error("Method not implemented.");
 	},
 
-	async delete(transactionId: TransactionId): Promise<void> {
+	async delete(transactionId: TransactionId): Promise<boolean> {
 		throw new Error("Method not implemented.");
 	}
 };

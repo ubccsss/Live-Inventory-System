@@ -18,11 +18,11 @@ SimpleCrudQueryable<CsssUser, CsssUserInitializer, CsssUserMutator, UserId> = {
 		throw new Error("Method not implemented.");
 	},
 
-	async update(userId: UserId, mutateObject: CsssUserMutator, returnUpdated = false): Promise<CsssUser|void> {
+	async update(userId: UserId, mutateObject: CsssUserMutator): Promise<CsssUser> {
 		throw new Error("Method not implemented.");
 	},
 
-	async delete(userId: UserId): Promise<void> {
+	async delete(userId: UserId): Promise<boolean> {
 		throw new Error("Method not implemented.");
 	}
 };

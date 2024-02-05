@@ -26,13 +26,12 @@ const compositeCrudQueries:
 	async update(
 		transactionId: TransactionId,
 		itemId: ItemId,
-		mutateObject: TransactionItemMutator,
-		returnUpdated = false
-	): Promise<TransactionItem|void> {
+		mutateObject: TransactionItemMutator
+	): Promise<TransactionItem> {
 		throw new Error("Method not implemented.");
 	},
 
-	async delete(transactionId: TransactionId, itemId: ItemId): Promise<void> {
+	async delete(transactionId: TransactionId, itemId: ItemId): Promise<boolean> {
 		throw new Error("Method not implemented.");
 	}
 };
