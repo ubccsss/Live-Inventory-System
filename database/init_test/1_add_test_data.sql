@@ -173,7 +173,7 @@ INSERT INTO
 SELECT
 	'url1',
 	500,
-	'2024-01-02 04:05:06 -8:00',
+	'2024-01-02',
 	user_id
 FROM
 	csss_user
@@ -190,7 +190,7 @@ INSERT INTO
 SELECT
 	'url2',
 	2000,
-	'2024-01-08 15:20:00 -8:00',
+	'2024-01-08',
 	user_id
 FROM
 	csss_user
