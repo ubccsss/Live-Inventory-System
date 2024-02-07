@@ -3,7 +3,7 @@ import ItemIndividualQuery from "../../../src/db/queries/ItemIndividualQuery";
 import {ItemIndividualInitializer, ItemIndividualMutator} from "../../../src/types/db/public/ItemIndividual";
 import Dinero from "dinero.js";
 import * as TestItems from "../test_objs/ItemIndividual";
-import {testCreate, testDelete, testRead, testReadAll, testUpdate} from "./Queryable";
+import {testCreate, testDelete, testRead, testReadAll, testUpdate} from "./SimpleCrudQueryable";
 
 const testItemInitializer: ItemIndividualInitializer = {
 	name: "Welch's Fruit Snacks",
@@ -19,14 +19,14 @@ const testItemInitializer: ItemIndividualInitializer = {
 };
 
 describe("ItemIndividual Query Tests", () => {
-	
+
 	testCreate(ItemIndividualQuery, {
-		testQueryableInitializer: testItemInitializer,
+		testInitializer: testItemInitializer,
 		getId: (q) => q.item_id
 	});
 
 	testRead(ItemIndividualQuery, {
-		testQueryableId: TestItems.clifBar.item_id,
+		testId: TestItems.clifBar.item_id,
 		testQueryable: TestItems.clifBar,
 		nonexistentId: -1
 	});
@@ -34,22 +34,22 @@ describe("ItemIndividual Query Tests", () => {
 	testReadAll(ItemIndividualQuery, Object.values(TestItems));
 
 	const itemMutator: ItemIndividualMutator = {
-		price: Dinero({ amount: 50, currency: "CAD" }),
+		price: Dinero({amount: 50, currency: "CAD"}),
 		quantity_remaining: 25,
 		last_restocked: new Date("2024-02-01"),
 	};
 	testUpdate(ItemIndividualQuery, {
-		testQueryableInitializer: testItemInitializer,
-		testQueryableMutator: itemMutator,
+		testInitializer: testItemInitializer,
+		testMutator: itemMutator,
 		nonexistentId: -1,
 		getId: (q) => q.item_id
 	});
 
 	testDelete(ItemIndividualQuery, {
-		testQueryableInitializer: testItemInitializer,
+		testInitializer: testItemInitializer,
 		nonexistentId: -1,
 		getId: (q) => q.item_id
-	})
+	});
 
 	describe("readAllFromCategory()", () => {
 		it("returns array containing all items in category", async () => {

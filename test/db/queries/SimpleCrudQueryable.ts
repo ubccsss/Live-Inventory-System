@@ -5,14 +5,14 @@ import {SimpleCrudQueryable} from "../../../src/db/Queryable";
 export const testCreate = <T, TInit, TMut, PK>(
 	Queryable: SimpleCrudQueryable<T, TInit, TMut, PK>,
 	testProps: {
-		testQueryableInitializer: TInit,
+		testInitializer: TInit,
 		getId: (q: T) => PK
 	}
 ) => {
-	const {testQueryableInitializer, getId} = testProps;
+	const {testInitializer, getId} = testProps;
 	describe("create()", () => {
 		it("creates basic queryable", async () => {
-			const createdItem = await Queryable.create(testQueryableInitializer);
+			const createdItem = await Queryable.create(testInitializer);
 			expect(await Queryable.read(getId(createdItem))).to.deep.equal(createdItem);
 			expect(await Queryable.readAll()).to.deep.contain(createdItem);
 
@@ -25,15 +25,15 @@ export const testCreate = <T, TInit, TMut, PK>(
 export const testRead = <T, TInit, TMut, PK>(
 	Queryable: SimpleCrudQueryable<T, TInit, TMut, PK>,
 	testProps: {
-		testQueryableId: PK,
+		testId: PK,
 		testQueryable: T,
 		nonexistentId: PK
 	}
 ) => {
-	const {testQueryableId, testQueryable, nonexistentId} = testProps;
+	const {testId, testQueryable, nonexistentId} = testProps;
 	describe("read()", () => {
 		it("reads existing queryable", async () => {
-			expect(await Queryable.read(testQueryableId)).to.deep.equal(testQueryable);
+			expect(await Queryable.read(testId)).to.deep.equal(testQueryable);
 		});
 		it("returns null when reading nonexistent queryable", async () => {
 			expect(await Queryable.read(nonexistentId)).to.be.null;
@@ -43,12 +43,11 @@ export const testRead = <T, TInit, TMut, PK>(
 
 export const testReadAll = <T, TInit, TMut, PK>(
 	Queryable: SimpleCrudQueryable<T, TInit, TMut, PK>,
-	allDBItems: T[]
+	allTableQueryables: T[]
 ) => {
 	describe("readAll()", () => {
 		it("returns list of all queryables", async () => {
-			const allItems = await Queryable.readAll();
-			allItems.forEach((item) => expect(allDBItems).to.deep.contain(item));
+			expect(await Queryable.readAll()).to.have.deep.members(allTableQueryables);
 		});
 	});
 };
@@ -57,28 +56,28 @@ export const testReadAll = <T, TInit, TMut, PK>(
 export const testUpdate = <T, TInit, TMut, PK>(
 	Queryable: SimpleCrudQueryable<T, TInit, TMut | object, PK>,
 	testProps: {
-		testQueryableInitializer: TInit,
-		testQueryableMutator: TMut,
+		testInitializer: TInit,
+		testMutator: TMut,
 		nonexistentId: PK,
 		getId: (q: T) => PK
 	}
 ) => {
-	const {testQueryableInitializer, testQueryableMutator, nonexistentId, getId} = testProps;
+	const {testInitializer, testMutator, nonexistentId, getId} = testProps;
 	describe("update()", () => {
 		it("updates existing queryable", async () => {
-			const createdItem = await Queryable.create(testQueryableInitializer);
-			const mutatedItem = {...createdItem, ...testQueryableMutator};
-			expect(await Queryable.update(getId(createdItem), testQueryableMutator)).to.deep.equal(mutatedItem);
+			const createdItem = await Queryable.create(testInitializer);
+			const mutatedItem = {...createdItem, ...testMutator};
+			expect(await Queryable.update(getId(createdItem), testMutator)).to.deep.equal(mutatedItem);
 			expect(await Queryable.read(getId(createdItem))).to.deep.equal(mutatedItem);
 
 			// cleanup
 			await Queryable.delete(getId(createdItem));
 		});
 		it("returns null when updating nonexistent queryable", async () => {
-			expect(await Queryable.update(nonexistentId, testQueryableMutator)).to.be.null;
+			expect(await Queryable.update(nonexistentId, testMutator)).to.be.null;
 		});
 		it("does not modify queryable if given empty mutator", async () => {
-			const createdItem = await Queryable.create(testQueryableInitializer);
+			const createdItem = await Queryable.create(testInitializer);
 			expect(await Queryable.update(getId(createdItem), {})).to.deep.equal(createdItem);
 
 			// cleanup
@@ -88,17 +87,17 @@ export const testUpdate = <T, TInit, TMut, PK>(
 };
 
 export const testDelete = <T, TInit, TMut, PK>(
-	Queryable: SimpleCrudQueryable<T, TInit, TMut | object, PK>,
+	Queryable: SimpleCrudQueryable<T, TInit, TMut, PK>,
 	testProps: {
-		testQueryableInitializer: TInit,
+		testInitializer: TInit,
 		nonexistentId: PK,
 		getId: (q: T) => PK
 	}
 ) => {
-	const {testQueryableInitializer, nonexistentId, getId} = testProps;
+	const {testInitializer, nonexistentId, getId} = testProps;
 	describe("delete()", () => {
 		it("deletes existing item", async () => {
-			const createdItem = await Queryable.create(testQueryableInitializer);
+			const createdItem = await Queryable.create(testInitializer);
 			expect(await Queryable.delete(getId(createdItem))).to.be.true;
 			expect(await Queryable.readAll()).to.not.deep.contain(createdItem);
 		});
