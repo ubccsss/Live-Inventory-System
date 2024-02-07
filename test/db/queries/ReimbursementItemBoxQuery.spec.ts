@@ -3,7 +3,6 @@ import {
 	ReimbursementItemBoxInitializer,
 	ReimbursementItemBoxMutator
 } from "../../../src/types/db/public/ReimbursementItemBox";
-import {reimbursementOneClifBar} from "../test_objs/ReimbursementItemBox";
 import {testCreate, testDelete, testRead, testReadAll, testUpdate} from "./CompositeCrudQueryable";
 import * as TestItems from "../test_objs/ReimbursementItemBox";
 import {expect} from "chai";
@@ -22,9 +21,9 @@ describe("ReimbursementItemBox Query Tests", () => {
 	});
 
 	testRead(ReimbursementItemBoxQuery, {
-		testId1: reimbursementOneClifBar.reimbursement_id,
-		testId2: reimbursementOneClifBar.item_box_id,
-		testQueryable: reimbursementOneClifBar
+		testId1: TestItems.reimbursementOneClifBar.reimbursement_id,
+		testId2: TestItems.reimbursementOneClifBar.item_box_id,
+		testQueryable: TestItems.reimbursementOneClifBar
 	});
 
 	testReadAll(ReimbursementItemBoxQuery, Object.values(TestItems));
@@ -65,8 +64,10 @@ describe("ReimbursementItemBox Query Tests", () => {
 	});
 	describe("readAllFromReimbursement()", () => {
 		it("returns all ReimbursementItemBoxes with the given reimbursementId", async () => {
-			const r2RIBs = await ReimbursementItemBoxQuery.readAllFromReimbursement(2);
-			expect(r2RIBs).to.have.deep.members([TestItems.reimbursementTwoRamen, TestItems.reimbursementTwoCola]);
+			const reimbursementTwoRIBs = await ReimbursementItemBoxQuery.readAllFromReimbursement(2);
+			expect(reimbursementTwoRIBs).to.have.deep.members(
+				[TestItems.reimbursementTwoRamen, TestItems.reimbursementTwoCola])
+			;
 		});
 		it("returns empty array if no ReimbursementItemBoxes match given reimbursementId", async () => {
 			expect(await ReimbursementItemBoxQuery.readAllFromReimbursement(-1)).to.be.empty;

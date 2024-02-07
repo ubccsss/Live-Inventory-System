@@ -1,6 +1,6 @@
 import {ReimbursementInitializer, ReimbursementMutator} from "../../../src/types/db/public/Reimbursement";
 import Dinero from "dinero.js";
-import { testCreate, testDelete, testRead, testReadAll, testUpdate } from "./SimpleCrudQueryable";
+import {testCreate, testDelete, testRead, testReadAll, testUpdate} from "./SimpleCrudQueryable";
 import ReimbursementQuery from "../../../src/db/queries/ReimbursementQuery";
 import * as TestItems from "../test_objs/Reimbursement";
 
