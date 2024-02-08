@@ -1,6 +1,6 @@
 import ItemIndividual,
-{ItemId, ItemIndividualInitializer, ItemIndividualMutator} from "../../types/public/ItemIndividual";
-import {Category} from "../../types/public/ValidCategory";
+{ItemId, ItemIndividualInitializer, ItemIndividualMutator} from "../../types/db/public/ItemIndividual";
+import {Category} from "../../types/db/public/ValidCategory";
 import {SimpleCrudQueryable} from "../Queryable";
 
 const simpleCrudQueries:
@@ -17,12 +17,11 @@ SimpleCrudQueryable<ItemIndividual, ItemIndividualInitializer, ItemIndividualMut
 		throw new Error("Method not implemented.");
 	},
 
-	async update(itemId: ItemId, mutateObject: ItemIndividualMutator, returnUpdated = false):
-	Promise<ItemIndividual|void> {
+	async update(itemId: ItemId, mutateObject: ItemIndividualMutator): Promise<ItemIndividual> {
 		throw new Error("Method not implemented.");
 	},
 
-	async delete(itemId: ItemId): Promise<void> {
+	async delete(itemId: ItemId): Promise<boolean> {
 		throw new Error("Method not implemented.");
 	}
 };

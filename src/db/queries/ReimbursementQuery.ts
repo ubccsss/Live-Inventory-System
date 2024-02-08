@@ -1,6 +1,6 @@
 
 import Reimbursement,
-{ReimbursementId, ReimbursementInitializer, ReimbursementMutator} from "../../types/public/Reimbursement";
+{ReimbursementId, ReimbursementInitializer, ReimbursementMutator} from "../../types/db/public/Reimbursement";
 import {SimpleCrudQueryable} from "../Queryable";
 
 const simpleCrudQueries:
@@ -17,12 +17,11 @@ SimpleCrudQueryable<Reimbursement, ReimbursementInitializer, ReimbursementMutato
 		throw new Error("Method not implemented.");
 	},
 
-	async update(reimbursementId: ReimbursementId, mutateObject: ReimbursementMutator, returnUpdated = false):
-	Promise<Reimbursement|void> {
+	async update(reimbursementId: ReimbursementId, mutateObject: ReimbursementMutator): Promise<Reimbursement> {
 		throw new Error("Method not implemented.");
 	},
 
-	async delete(reimbursementId: ReimbursementId): Promise<void> {
+	async delete(reimbursementId: ReimbursementId): Promise<boolean> {
 		throw new Error("Method not implemented.");
 	}
 };

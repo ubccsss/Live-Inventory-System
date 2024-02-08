@@ -1,7 +1,7 @@
-import {ItemId} from "../../types/public/ItemIndividual";
-import {TransactionId} from "../../types/public/Transaction";
+import {ItemId} from "../../types/db/public/ItemIndividual";
+import {TransactionId} from "../../types/db/public/Transaction";
 import TransactionItem,
-{TransactionItemInitializer, TransactionItemMutator} from "../../types/public/TransactionItem";
+{TransactionItemInitializer, TransactionItemMutator} from "../../types/db/public/TransactionItem";
 import {CompositeCrudQueryable} from "../Queryable";
 
 const compositeCrudQueries:
@@ -26,13 +26,12 @@ const compositeCrudQueries:
 	async update(
 		transactionId: TransactionId,
 		itemId: ItemId,
-		mutateObject: TransactionItemMutator,
-		returnUpdated = false
-	): Promise<TransactionItem|void> {
+		mutateObject: TransactionItemMutator
+	): Promise<TransactionItem> {
 		throw new Error("Method not implemented.");
 	},
 
-	async delete(transactionId: TransactionId, itemId: ItemId): Promise<void> {
+	async delete(transactionId: TransactionId, itemId: ItemId): Promise<boolean> {
 		throw new Error("Method not implemented.");
 	}
 };

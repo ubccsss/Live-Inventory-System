@@ -1,5 +1,5 @@
 
-import ItemBox, {ItemBoxId, ItemBoxInitializer, ItemBoxMutator} from "../../types/public/ItemBox";
+import ItemBox, {ItemBoxId, ItemBoxInitializer, ItemBoxMutator} from "../../types/db/public/ItemBox";
 import {SimpleCrudQueryable} from "../Queryable";
 
 const simpleCrudQueries:
@@ -16,11 +16,11 @@ SimpleCrudQueryable<ItemBox, ItemBoxInitializer, ItemBoxMutator, ItemBoxId> = {
 		throw new Error("Method not implemented.");
 	},
 
-	async update(itemBoxId: ItemBoxId, mutateObject: ItemBoxMutator, returnUpdated = false): Promise<ItemBox|void> {
+	async update(itemBoxId: ItemBoxId, mutateObject: ItemBoxMutator): Promise<ItemBox> {
 		throw new Error("Method not implemented.");
 	},
 
-	async delete(itemBoxId: ItemBoxId): Promise<void> {
+	async delete(itemBoxId: ItemBoxId): Promise<boolean> {
 		throw new Error("Method not implemented.");
 	}
 };
