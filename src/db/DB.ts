@@ -13,7 +13,7 @@ pool.on("error", (err, client) => {
 	console.log(`Client in pool experienced error: ${err}`);
 });
 
-export const query = async (text: string, params: any[]): Promise<QueryResult<any>> => {
+export const query = async (text: string, params?: any[]): Promise<QueryResult<any>> => {
 	return await pool.query(text, params);
 };
 
