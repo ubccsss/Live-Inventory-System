@@ -23,6 +23,8 @@ describe.only("ReimbursementItemBox Query Tests", () => {
 	testRead(ReimbursementItemBoxQuery, {
 		testId1: TestItems.reimbursementOneClifBar.reimbursement_id,
 		testId2: TestItems.reimbursementOneClifBar.item_box_id,
+		nonexistentId1: -1,
+		nonexistentId2: -2,
 		testQueryable: TestItems.reimbursementOneClifBar
 	});
 

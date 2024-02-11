@@ -20,6 +20,8 @@ describe("TransactionItem Query Tests", () => {
 	testRead(TransactionItemQuery, {
 		testId1: TestItems.transactionOneRamen.transaction_id,
 		testId2: TestItems.transactionOneRamen.item_id,
+		nonexistentId1: -1,
+		nonexistentId2: -2,
 		testQueryable: TestItems.transactionOneRamen
 	});
 
