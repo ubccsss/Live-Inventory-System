@@ -11,6 +11,8 @@ When setting up the `.env` file, take care to use the correct database names sin
 ```bash
 POSTGRES_USER="<username>"
 POSTGRES_PASSWORD="<password>"
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
 POSTGRES_DB=["cube_data"|"test_data"]
 POSTGRES_DATA_PATH=["database/data"|"database/test_data"]
 POSTGRES_INIT_PATH=["database/init"|"database/init_test"]
