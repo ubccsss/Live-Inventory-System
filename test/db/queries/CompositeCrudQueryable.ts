@@ -14,11 +14,13 @@ export const testCreate = <T, TInit, TMut, PK1, PK2>(
 	describe("create()", () => {
 		it("creates basic queryable", async () => {
 			const createdItem = await Queryable.create(testInitializer);
-			expect(await Queryable.read(getId1(createdItem), getId2(createdItem))).to.deep.equal(createdItem);
-			expect(await Queryable.readAll()).to.deep.contain(createdItem);
-
-			// cleanup
-			await Queryable.delete(getId1(createdItem), getId2(createdItem));
+			try {
+				expect(await Queryable.read(getId1(createdItem), getId2(createdItem))).to.deep.equal(createdItem);
+				expect(await Queryable.readAll()).to.deep.contain(createdItem);
+			} finally {
+				// cleanup
+				await Queryable.delete(getId1(createdItem), getId2(createdItem));
+			}
 		});
 	});
 };
@@ -66,23 +68,27 @@ export const testUpdate = <T, TInit, TMut, PK1, PK2>(
 	describe("update()", () => {
 		it("updates existing queryable", async () => {
 			const createdItem = await Queryable.create(testInitializer);
-			const mutatedItem = {...createdItem, ...testMutator};
-			expect(await Queryable.update(getId1(createdItem), getId2(createdItem), testMutator))
-				.to.deep.equal(mutatedItem);
-			expect(await Queryable.read(getId1(createdItem), getId2(createdItem))).to.deep.equal(mutatedItem);
-
-			// cleanup
-			await Queryable.delete(getId1(createdItem), getId2(createdItem));
+			try {
+				const mutatedItem = {...createdItem, ...testMutator};
+				expect(await Queryable.update(getId1(createdItem), getId2(createdItem), testMutator))
+					.to.deep.equal(mutatedItem);
+				expect(await Queryable.read(getId1(createdItem), getId2(createdItem))).to.deep.equal(mutatedItem);
+			} finally {
+				// cleanup
+				await Queryable.delete(getId1(createdItem), getId2(createdItem));
+			}
 		});
 		it("returns null when updating nonexistent queryable", async () => {
 			expect(await Queryable.update(nonexistentId1, nonexistentId2, testMutator)).to.be.null;
 		});
 		it("returns null if given empty mutator", async () => {
 			const createdItem = await Queryable.create(testInitializer);
-			expect(await Queryable.update(getId1(createdItem), getId2(createdItem), {})).to.be.null;
-
-			// cleanup
-			await Queryable.delete(getId1(createdItem), getId2(createdItem));
+			try {
+				expect(await Queryable.update(getId1(createdItem), getId2(createdItem), {})).to.be.null;
+			} finally {
+				// cleanup
+				await Queryable.delete(getId1(createdItem), getId2(createdItem));
+			}
 		});
 	});
 };
