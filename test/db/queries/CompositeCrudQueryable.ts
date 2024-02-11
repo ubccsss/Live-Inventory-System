@@ -36,7 +36,7 @@ export const testRead = <T, TInit, TMut, PK1, PK2>(
 	const {testId1, testId2, testQueryable} = testProps;
 	describe("read()", () => {
 		it("reads existing queryable", async () => {
-			expect(await Queryable.read(testId1, testId2)).to.equal(testQueryable);
+			expect(await Queryable.read(testId1, testId2)).to.deep.equal(testQueryable);
 		});
 	});
 };
