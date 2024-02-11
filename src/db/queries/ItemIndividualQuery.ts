@@ -74,8 +74,12 @@ const itemIndividualQueries = {
 	 * @param category Category to search within
 	 * @returns Promise resolving to all items in the table with the specified category
 	 */
-	async readAllFromCategory(category: Category): Promise<ItemIndividual> {
-		throw new Error("Method not implemented.");
+	async readAllFromCategory(category: Category): Promise<ItemIndividual[]> {
+		const queryResponse = await DB.query(
+			"SELECT * FROM item_individual WHERE category=$1",
+			[category]
+		);
+		return queryResponse.rows;
 	}
 };
 
