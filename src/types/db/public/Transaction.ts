@@ -1,5 +1,3 @@
-import {Dinero} from "dinero.js";
-
 /** Identifier type for transaction */
 export type TransactionId = number & {__flavor?: "TransactionId"};
 
@@ -7,7 +5,7 @@ export type TransactionId = number & {__flavor?: "TransactionId"};
 export default interface Transaction {
   transaction_id: TransactionId;
 
-  total: Dinero;
+  total: bigint;
 
   transaction_time: Date | null;
 
@@ -16,7 +14,7 @@ export default interface Transaction {
 
 /** Represents the initializer for the table public.transaction */
 export interface TransactionInitializer {
-  total: Dinero;
+  total: bigint;
 
   /** Default value: CURRENT_TIMESTAMP */
   transaction_time?: Date | null;
@@ -26,7 +24,7 @@ export interface TransactionInitializer {
 
 /** Represents the mutator for the table public.transaction */
 export interface TransactionMutator {
-  total?: Dinero;
+  total?: bigint;
 
   transaction_time?: Date | null;
 

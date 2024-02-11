@@ -8,7 +8,7 @@ const testItemBoxInitializer: ItemBoxInitializer = {
 	quantity_per_box: 6
 };
 
-describe("ItemIndividual Query Tests", () => {
+describe("ItemBox Query Tests", () => {
 
 	testCreate(ItemBoxQuery, {
 		testInitializer: testItemBoxInitializer,

@@ -1,20 +1,19 @@
 import {expect} from "chai";
 import ItemIndividualQuery from "../../../src/db/queries/ItemIndividualQuery";
 import {ItemIndividualInitializer, ItemIndividualMutator} from "../../../src/types/db/public/ItemIndividual";
-import Dinero from "dinero.js";
 import * as TestItems from "../test_objs/ItemIndividual";
 import {testCreate, testDelete, testRead, testReadAll, testUpdate} from "./SimpleCrudQueryable";
 
 const testItemInitializer: ItemIndividualInitializer = {
 	name: "Welch's Fruit Snacks",
 	description: "Made with real fruit",
-	price: Dinero({amount: 75, currency: "CAD"}),
+	price: BigInt(75),
 	category: "food",
 	img_url: "url",
 	reservable: false,
 	quantity_remaining: 5,
 	low_stock_threshold: 5,
-	last_restocked: new Date("2024-01-24"),
+	last_restocked: new Date("2024-01-24T08:00:00.000Z"),
 	max_quantity_per_transaction: 2
 };
 
@@ -34,9 +33,9 @@ describe("ItemIndividual Query Tests", () => {
 	testReadAll(ItemIndividualQuery, Object.values(TestItems));
 
 	const itemMutator: ItemIndividualMutator = {
-		price: Dinero({amount: 50, currency: "CAD"}),
+		price: BigInt(50),
 		quantity_remaining: 25,
-		last_restocked: new Date("2024-02-01"),
+		last_restocked: new Date("2024-02-01T08:00:00.000Z"),
 	};
 	testUpdate(ItemIndividualQuery, {
 		testInitializer: testItemInitializer,

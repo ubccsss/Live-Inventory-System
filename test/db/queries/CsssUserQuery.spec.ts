@@ -13,7 +13,7 @@ const testCsssInitializer: CsssUserInitializer = {
 	phone_number: "9998887777"
 };
 
-describe("ItemIndividual Query Tests", () => {
+describe("CsssUser Query Tests", () => {
 
 	testCreate(CsssUserQuery, {
 		testInitializer: testCsssInitializer,

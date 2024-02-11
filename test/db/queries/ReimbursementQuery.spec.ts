@@ -1,17 +1,16 @@
 import {ReimbursementInitializer, ReimbursementMutator} from "../../../src/types/db/public/Reimbursement";
-import Dinero from "dinero.js";
 import {testCreate, testDelete, testRead, testReadAll, testUpdate} from "./SimpleCrudQueryable";
 import ReimbursementQuery from "../../../src/db/queries/ReimbursementQuery";
 import * as TestItems from "../test_objs/Reimbursement";
 
 const testReimbursementInitializer: ReimbursementInitializer = {
 	receipt_img_url: "url3",
-	purchase_total: Dinero({amount: 600, currency: "CAD"}),
+	purchase_total: BigInt(600),
 	purchase_date: new Date("2024-02-02"),
 	user_id: 3
 };
 
-describe("Reimbursement Tests", () => {
+describe("Reimbursement Query Tests", () => {
 	testCreate(ReimbursementQuery, {
 		testInitializer: testReimbursementInitializer,
 		getId: (q) => q.reimbursement_id

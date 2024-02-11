@@ -1,5 +1,9 @@
-import {Pool} from "pg";
+import {Pool, types} from "pg";
 import type {QueryResult} from "pg";
+
+const UINT8_OID = 20;
+types.setTypeParser(UINT8_OID, (val) => BigInt(val));
+
 
 const pool = new Pool({
 	user: process.env.POSTGRES_USER,

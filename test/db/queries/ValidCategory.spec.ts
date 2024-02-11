@@ -8,7 +8,7 @@ const testValidCategoryInitializer: ValidCategoryInitializer = {
 	category: "category"
 };
 
-describe("ItemIndividual Query Tests", () => {
+describe("ValidCategory Query Tests", () => {
 
 	testCreate(ValidCategoryQuery, {
 		testInitializer: testValidCategoryInitializer,

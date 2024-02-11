@@ -76,9 +76,9 @@ export const testUpdate = <T, TInit, TMut, PK>(
 		it("returns null when updating nonexistent queryable", async () => {
 			expect(await Queryable.update(nonexistentId, testMutator)).to.be.null;
 		});
-		it("does not modify queryable if given empty mutator", async () => {
+		it("returns null if given empty mutator", async () => {
 			const createdItem = await Queryable.create(testInitializer);
-			expect(await Queryable.update(getId(createdItem), {})).to.deep.equal(createdItem);
+			expect(await Queryable.update(getId(createdItem), {})).to.be.null;
 
 			// cleanup
 			await Queryable.delete(getId(createdItem));

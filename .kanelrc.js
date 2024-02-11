@@ -27,21 +27,9 @@ module.exports = {
   preDeleteOutputFolder: true,
   outputPath: "./src/types/db",
 
-  // Postgres bigints are assumed to represent monetary values and converted to Dinero.js objects
+  // Postgres bigints are mapped to JS bigints
   customTypeMap: {
-    "pg_catalog.tsvector": "string",
-    "pg_catalog.bpchar": "string",
-    "pg_catalog.int8": {
-      name: "Dinero",
-      typeImports: [
-        {
-          name: "Dinero",
-          path: "dinero.js",
-          isAbsolute: true,
-          isDefault: false
-        }
-      ]
-    }
+    "pg_catalog.int8": "bigint"
   },
 
   // This implementation will generate flavored instead of branded types.

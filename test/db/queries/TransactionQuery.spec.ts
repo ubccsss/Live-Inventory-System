@@ -1,16 +1,15 @@
-import Dinero from "dinero.js";
 import {testCreate, testDelete, testRead, testReadAll, testUpdate} from "./SimpleCrudQueryable";
 import TransactionQuery from "../../../src/db/queries/TransactionQuery";
 import * as TestItems from "../test_objs/Transaction";
 import {TransactionInitializer, TransactionMutator} from "../../../src/types/db/public/Transaction";
 
 const testTransactioninitializer: TransactionInitializer = {
-	total: Dinero({amount: 100, currency: "CAD"}),
+	total: BigInt(100),
 	transaction_time: new Date("2024-02-05"),
 	payer_email: "peppa@pig.org"
 };
 
-describe("Reimbursement Tests", () => {
+describe("Transaction Query Tests", () => {
 	testCreate(TransactionQuery, {
 		testInitializer: testTransactioninitializer,
 		getId: (q) => q.transaction_id
@@ -25,7 +24,7 @@ describe("Reimbursement Tests", () => {
 	testReadAll(TransactionQuery, Object.values(TestItems));
 
 	const transactionMutator: TransactionMutator = {
-		total: Dinero({amount: 500, currency: "CAD"}),
+		total: BigInt(500),
 		payer_email: "none@none.no"
 	};
 
