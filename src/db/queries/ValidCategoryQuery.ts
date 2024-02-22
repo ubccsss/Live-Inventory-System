@@ -15,6 +15,11 @@ class ValidCategoryQuery extends SimpleCrudQueryable<
 	constructor() {
 		super(tableName, pkName);
 	}
+
+	// Do not allow updating since category is a primary key
+	public update = async (primaryKey: Category, mutateObject: ValidCategoryMutator): Promise<ValidCategory> => {
+		return null;
+	};
 }
 
 export default new ValidCategoryQuery();

@@ -1,8 +1,9 @@
 
 import * as TestItems from "../test_objs/ValidCategory";
-import {testCreate, testDelete, testRead, testReadAll, testUpdate} from "./SimpleCrudQueryable";
+import {testCreate, testDelete, testRead, testReadAll} from "./SimpleCrudQueryable";
 import ValidCategoryQuery from "../../../src/db/queries/ValidCategoryQuery";
 import {ValidCategoryInitializer, ValidCategoryMutator} from "../../../src/types/db/public/ValidCategory";
+import {expect} from "chai";
 
 const testValidCategoryInitializer: ValidCategoryInitializer = {
 	category: "category"
@@ -26,11 +27,22 @@ describe("ValidCategory Query Tests", () => {
 	const validCategoryMutator: ValidCategoryMutator = {
 		category: "wow"
 	};
-	testUpdate(ValidCategoryQuery, {
-		testInitializer: testValidCategoryInitializer,
-		testMutator: validCategoryMutator,
-		nonexistentId: "fake",
-		getId: (q) => q.category
+	describe("update()", () => {
+		it("cannot update existing category", async () => {
+			expect(await ValidCategoryQuery.update(TestItems.categoryDrink.category, validCategoryMutator)).to.be.null;
+		});
+		it("returns null when updating nonexistent queryable", async () => {
+			expect(await ValidCategoryQuery.update("fake", validCategoryMutator)).to.be.null;
+		});
+		it("returns null if given empty mutator", async () => {
+			const createdItem = await ValidCategoryQuery.create(testValidCategoryInitializer);
+			try {
+				expect(await ValidCategoryQuery.update(createdItem.category, {})).to.be.null;
+			} finally {
+				// cleanup
+				await ValidCategoryQuery.delete(createdItem.category);
+			}
+		});
 	});
 
 	testDelete(ValidCategoryQuery, {

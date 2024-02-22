@@ -6,7 +6,7 @@ import * as TestItems from "../test_objs/Reimbursement";
 const testReimbursementInitializer: ReimbursementInitializer = {
 	receipt_img_url: "url3",
 	purchase_total: BigInt(600),
-	purchase_date: new Date("2024-02-02"),
+	purchase_date: new Date("2024-02-02T08:00:00.000Z"),
 	user_id: 3
 };
 
@@ -25,7 +25,7 @@ describe("Reimbursement Query Tests", () => {
 	testReadAll(ReimbursementQuery, Object.values(TestItems));
 
 	const reimbursementMutator: ReimbursementMutator = {
-		purchase_date: new Date("2024-01-01"),
+		purchase_date: new Date("2024-01-01T08:00:00.000Z"),
 		reimbursed: true
 	};
 
