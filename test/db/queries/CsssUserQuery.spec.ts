@@ -49,7 +49,7 @@ describe("CsssUser Query Tests", () => {
 	describe("authenticateUser()", () => {
 		it("returns user with matching credentials", async () => {
 			expect(await CsssUserQuery.authenticateUser("george@ubccsss.org", "hash2"))
-				.to.equal(TestItems.csssUserGeorge);
+				.to.deep.equal(TestItems.csssUserGeorge);
 		});
 		it("returns null when username matches but password is incorrect", async () => {
 			expect(await CsssUserQuery.authenticateUser("george@ubccsss.org", "wrong")).to.be.null;

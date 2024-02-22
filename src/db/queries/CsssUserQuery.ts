@@ -2,6 +2,7 @@
 import CsssUser,
 {UserId, CsssUserInitializer, CsssUserMutator} from "../../types/db/public/CsssUser";
 import {SimpleCrudQueryable} from "../SimpleCrudQueryable";
+import * as DB from "../../db/DB";
 
 const tableName = "csss_user";
 const pkName = "user_id";
@@ -18,7 +19,15 @@ class CsssUserQuery extends SimpleCrudQueryable<CsssUser, CsssUserInitializer, C
 	 * @returns Promise resolving to the CsssUser with the given credentials, or null if no user found
 	 */
 	public authenticateUser = async (email: string, password: string): Promise<CsssUser> => {
-		throw new Error("Method not implemented.");
+		const queryResponse = await DB.query(
+			`SELECT * FROM ${this.tableName} WHERE email=$1 AND password=$2`,
+			[email, password]
+		);
+		if (queryResponse.rows.length === 1) {
+			return queryResponse.rows[0];
+		} else {
+			return null;
+		}
 	};
 }
 
