@@ -1,70 +1,51 @@
 import ItemIndividual,
 {ItemId, ItemIndividualInitializer, ItemIndividualMutator} from "../../types/db/public/ItemIndividual";
 import {Category} from "../../types/db/public/ValidCategory";
-import {SimpleCrudQueryable} from "../SimpleCrudQueryable";
+import {
+	SimpleCrudQueryable,
+	simpleCreate,
+	simpleRead,
+	simpleReadAll,
+	simpleUpdate,
+	simpleDelete
+} from "../SimpleCrudQueryable";
 import * as DB from "../../db/DB";
+
+const tableName = "item_individual";
+const pkName = "item_id";
 
 const simpleCrudQueries:
 SimpleCrudQueryable<ItemIndividual, ItemIndividualInitializer, ItemIndividualMutator, ItemId> = {
 	async create(object: ItemIndividualInitializer): Promise<ItemIndividual> {
-		// Object.keys and Object.values return things in the same order so this is safe
-		const keys = Object.keys(object);
-		const values = Object.values(object);
-
-		const queryResponse = await DB.query(
-			`INSERT INTO item_individual (${keys.join(",")})` +
-			`VALUES (${keys.map((prop, i) => `$${i + 1}`).join(",")})` +
-			"RETURNING *",
-			values
+		return simpleCreate<ItemIndividual, ItemIndividualInitializer, ItemIndividualMutator, ItemId>(
+			object,
+			tableName
 		);
-		if (queryResponse.rows.length === 1) {
-			return queryResponse.rows[0];
-		} else {
-			return null;
-		}
 	},
 
 	async read(itemId: ItemId): Promise<ItemIndividual> {
-		const queryResponse = await DB.query(
-			"SELECT * FROM item_individual WHERE item_id=$1",
-			[itemId]
-		);
-		if (queryResponse.rows.length === 1) {
-			return queryResponse.rows[0];
-		} else {
-			return null;
-		}
+		return simpleRead<ItemIndividual, ItemIndividualInitializer, ItemIndividualMutator, ItemId>(itemId, tableName);
 	},
 
 	async readAll(): Promise<ItemIndividual[]> {
-		const queryResponse = await DB.query("SELECT * FROM item_individual");
-		return queryResponse.rows;
+		return simpleReadAll<ItemIndividual, ItemIndividualInitializer, ItemIndividualMutator, ItemId>(tableName);
 	},
 
 	async update(itemId: ItemId, mutateObject: ItemIndividualMutator): Promise<ItemIndividual> {
-		if (Object.keys(mutateObject).length === 0) {
-			return null;
-		}
-
-		// Use i+2 for parameter so that $1 is reserved for the item id
-		const keys = Object.keys(mutateObject).map((prop, i) => `${prop}=$${i + 2}`);
-		const queryResponse = await DB.query(
-			`UPDATE item_individual SET ${keys.join(",")} WHERE item_id=$1 RETURNING *`,
-			[itemId, ...Object.values(mutateObject)]
+		return simpleUpdate<ItemIndividual, ItemIndividualInitializer, ItemIndividualMutator, ItemId>(
+			itemId,
+			mutateObject,
+			tableName,
+			pkName
 		);
-		if (queryResponse.rows.length === 1) {
-			return queryResponse.rows[0];
-		} else {
-			return null;
-		}
 	},
 
 	async delete(itemId: ItemId): Promise<boolean> {
-		const queryResponse = await DB.query(
-			"DELETE FROM item_individual WHERE item_id=$1",
-			[itemId]
+		return simpleDelete<ItemIndividual, ItemIndividualInitializer, ItemIndividualMutator, ItemId>(
+			itemId,
+			tableName,
+			pkName
 		);
-		return queryResponse.rowCount === 1;
 	}
 };
 
