@@ -3,6 +3,7 @@ import {TransactionId} from "../../types/db/public/Transaction";
 import TransactionItem,
 {TransactionItemInitializer, TransactionItemMutator} from "../../types/db/public/TransactionItem";
 import {CompositeCrudQueryable} from "../CompositeCrudQueryable";
+import * as DB from "../../db/DB";
 
 const tableName = "transaction_item";
 const pk1Name = "transaction_id";
@@ -25,7 +26,11 @@ class TransactionItemQuery extends CompositeCrudQueryable<
 	 * @returns Promise resolving to array of TransactionItems linked to the given itemId
 	 */
 	public readAllFromItem = async (itemId: ItemId): Promise<TransactionItem[]> => {
-		throw new Error("Method not implemented.");
+		const queryResponse = await DB.query(
+			`SELECT * FROM ${this.tableName} WHERE ${this.pk2Name}=$1`,
+			[itemId]
+		);
+		return queryResponse.rows;
 	};
 
 	/**
@@ -34,7 +39,11 @@ class TransactionItemQuery extends CompositeCrudQueryable<
 	 * @returns Promise resolving to array of TransactionItems linked to the given transactionId
 	 */
 	public readAllFromTransaction = async (transactionId: TransactionId): Promise<TransactionItem[]> => {
-		throw new Error("Method not implemented.");
+		const queryResponse = await DB.query(
+			`SELECT * FROM ${this.tableName} WHERE ${this.pk1Name}=$1`,
+			[transactionId]
+		);
+		return queryResponse.rows;
 	};
 }
 
