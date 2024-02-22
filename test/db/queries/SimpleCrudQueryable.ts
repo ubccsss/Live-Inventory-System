@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import {expect} from "chai";
-import {SimpleCrudQueryable} from "../../../src/db/Queryable";
+import {SimpleCrudQueryable} from "../../../src/db/SimpleCrudQueryable";
 
 export const testCreate = <T, TInit, TMut, PK>(
 	Queryable: SimpleCrudQueryable<T, TInit, TMut, PK>,

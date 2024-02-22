@@ -13,7 +13,7 @@ const testRIBInitializer: ReimbursementItemBoxInitializer = {
 	item_quantity: 1
 };
 
-describe.only("ReimbursementItemBox Query Tests", () => {
+describe("ReimbursementItemBox Query Tests", () => {
 	testCreate(ReimbursementItemBoxQuery, {
 		testInitializer: testRIBInitializer,
 		getId1: (q) => q.reimbursement_id,

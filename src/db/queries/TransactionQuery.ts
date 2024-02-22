@@ -1,7 +1,7 @@
 
 import Transaction,
 {TransactionId, TransactionInitializer, TransactionMutator} from "../../types/db/public/Transaction";
-import {SimpleCrudQueryable} from "../Queryable";
+import {SimpleCrudQueryable} from "../SimpleCrudQueryable";
 
 const simpleCrudQueries:
 SimpleCrudQueryable<Transaction, TransactionInitializer, TransactionMutator, TransactionId> = {

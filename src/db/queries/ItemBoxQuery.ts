@@ -1,6 +1,6 @@
 
 import ItemBox, {ItemBoxId, ItemBoxInitializer, ItemBoxMutator} from "../../types/db/public/ItemBox";
-import {SimpleCrudQueryable} from "../Queryable";
+import {SimpleCrudQueryable} from "../SimpleCrudQueryable";
 
 const simpleCrudQueries:
 SimpleCrudQueryable<ItemBox, ItemBoxInitializer, ItemBoxMutator, ItemBoxId> = {

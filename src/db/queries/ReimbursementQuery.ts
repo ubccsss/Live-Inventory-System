@@ -1,7 +1,7 @@
 
 import Reimbursement,
 {ReimbursementId, ReimbursementInitializer, ReimbursementMutator} from "../../types/db/public/Reimbursement";
-import {SimpleCrudQueryable} from "../Queryable";
+import {SimpleCrudQueryable} from "../SimpleCrudQueryable";
 
 const simpleCrudQueries:
 SimpleCrudQueryable<Reimbursement, ReimbursementInitializer, ReimbursementMutator, ReimbursementId> = {

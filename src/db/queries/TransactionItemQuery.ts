@@ -2,7 +2,7 @@ import {ItemId} from "../../types/db/public/ItemIndividual";
 import {TransactionId} from "../../types/db/public/Transaction";
 import TransactionItem,
 {TransactionItemInitializer, TransactionItemMutator} from "../../types/db/public/TransactionItem";
-import {CompositeCrudQueryable} from "../Queryable";
+import {CompositeCrudQueryable} from "../CompositeCrudQueryable";
 
 const compositeCrudQueries:
 	CompositeCrudQueryable<TransactionItem,

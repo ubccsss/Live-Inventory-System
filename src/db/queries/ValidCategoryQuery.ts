@@ -1,7 +1,7 @@
 
 import ValidCategory,
 {Category, ValidCategoryInitializer, ValidCategoryMutator} from "../../types/db/public/ValidCategory";
-import {SimpleCrudQueryable} from "../Queryable";
+import {SimpleCrudQueryable} from "../SimpleCrudQueryable";
 
 const simpleCrudQueries:
 SimpleCrudQueryable<ValidCategory, ValidCategoryInitializer, ValidCategoryMutator, Category> = {

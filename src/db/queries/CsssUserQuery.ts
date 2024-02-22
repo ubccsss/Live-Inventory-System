@@ -1,7 +1,7 @@
 
 import CsssUser,
 {UserId, CsssUserInitializer, CsssUserMutator} from "../../types/db/public/CsssUser";
-import {SimpleCrudQueryable} from "../Queryable";
+import {SimpleCrudQueryable} from "../SimpleCrudQueryable";
 
 const simpleCrudQueries:
 SimpleCrudQueryable<CsssUser, CsssUserInitializer, CsssUserMutator, UserId> = {

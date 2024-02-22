@@ -1,7 +1,7 @@
 import ItemIndividual,
 {ItemId, ItemIndividualInitializer, ItemIndividualMutator} from "../../types/db/public/ItemIndividual";
 import {Category} from "../../types/db/public/ValidCategory";
-import {SimpleCrudQueryable} from "../Queryable";
+import {SimpleCrudQueryable} from "../SimpleCrudQueryable";
 import * as DB from "../../db/DB";
 
 const simpleCrudQueries:

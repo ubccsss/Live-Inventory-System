@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import {expect} from "chai";
-import {CompositeCrudQueryable} from "../../../src/db/Queryable";
+import {CompositeCrudQueryable} from "../../../src/db/CompositeCrudQueryable";
 
 export const testCreate = <T, TInit, TMut, PK1, PK2>(
 	Queryable: CompositeCrudQueryable<T, TInit, TMut, PK1, PK2>,
