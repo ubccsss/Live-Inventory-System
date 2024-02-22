@@ -27,7 +27,7 @@ class ReimbursementItemBoxQuery extends CompositeCrudQueryable<
 	 */
 	public readAllFromItemBox = async (itemBoxId: ItemBoxId): Promise<ReimbursementItemBox[]> => {
 		const queryResponse = await DB.query(
-			"SELECT * FROM reimbursement_item_box WHERE item_box_id=$1",
+			`SELECT * FROM ${this.tableName} WHERE ${this.pk2Name}=$1`,
 			[itemBoxId]
 		);
 		return queryResponse.rows;
@@ -40,7 +40,7 @@ class ReimbursementItemBoxQuery extends CompositeCrudQueryable<
 	 */
 	public readAllFromReimbursement = async (reimbursementId: ReimbursementId): Promise<ReimbursementItemBox[]> => {
 		const queryResponse = await DB.query(
-			"SELECT * FROM reimbursement_item_box WHERE reimbursement_id=$1",
+			`SELECT * FROM ${this.tableName} WHERE ${this.pk1Name}=$1`,
 			[reimbursementId]
 		);
 		return queryResponse.rows;

@@ -1,12 +1,12 @@
 import * as DB from "../db/DB";
 
 export class SimpleCrudQueryable<T, TInit, TMut, PK> {
-	#tableName: string;
-	#pkName: string;
+	protected tableName: string;
+	protected pkName: string;
 
 	constructor(tableName: string, pkName: string) {
-		this.#tableName = tableName;
-		this.#pkName = pkName;
+		this.tableName = tableName;
+		this.pkName = pkName;
 	}
 
 	/**
@@ -20,7 +20,7 @@ export class SimpleCrudQueryable<T, TInit, TMut, PK> {
 		const values = Object.values(object);
 
 		const queryResponse = await DB.query(
-			`INSERT INTO ${this.#tableName} (${keys.join(",")})` +
+			`INSERT INTO ${this.tableName} (${keys.join(",")})` +
 			`VALUES (${keys.map((prop, i) => `$${i + 1}`).join(",")})` +
 			"RETURNING *",
 			values
@@ -39,7 +39,7 @@ export class SimpleCrudQueryable<T, TInit, TMut, PK> {
 	 */
 	public read = async (primaryKey: PK): Promise<T> => {
 		const queryResponse = await DB.query(
-			`SELECT * FROM ${this.#tableName} WHERE ${this.#pkName}=$1`,
+			`SELECT * FROM ${this.tableName} WHERE ${this.pkName}=$1`,
 			[primaryKey]
 		);
 		if (queryResponse.rows.length === 1) {
@@ -54,7 +54,7 @@ export class SimpleCrudQueryable<T, TInit, TMut, PK> {
 	 * @returns Promise resolving to all entries of the object in its table in the database
 	 */
 	public readAll = async (): Promise<T[]> => {
-		const queryResponse = await DB.query(`SELECT * FROM ${this.#tableName}`);
+		const queryResponse = await DB.query(`SELECT * FROM ${this.tableName}`);
 		return queryResponse.rows;
 	};
 
@@ -72,7 +72,7 @@ export class SimpleCrudQueryable<T, TInit, TMut, PK> {
 		// Use i+2 for parameter so that $1 is reserved for the item id
 		const keys = Object.keys(mutateObject).map((prop, i) => `${prop}=$${i + 2}`);
 		const queryResponse = await DB.query(
-			`UPDATE ${this.#tableName} SET ${keys.join(",")} WHERE ${this.#pkName}=$1 RETURNING *`,
+			`UPDATE ${this.tableName} SET ${keys.join(",")} WHERE ${this.pkName}=$1 RETURNING *`,
 			[primaryKey, ...Object.values(mutateObject)]
 		);
 		if (queryResponse.rows.length === 1) {
@@ -89,7 +89,7 @@ export class SimpleCrudQueryable<T, TInit, TMut, PK> {
 	 */
 	public delete = async (primaryKey: PK): Promise<boolean> => {
 		const queryResponse = await DB.query(
-			`DELETE FROM ${this.#tableName} WHERE ${this.#pkName}=$1`,
+			`DELETE FROM ${this.tableName} WHERE ${this.pkName}=$1`,
 			[primaryKey]
 		);
 		return queryResponse.rowCount === 1;

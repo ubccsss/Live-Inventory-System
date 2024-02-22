@@ -1,14 +1,14 @@
 import * as DB from "../db/DB";
 
 export class CompositeCrudQueryable<T, TInit, TMut, PK1, PK2> {
-	#tableName: string;
-	#pk1Name: string;
-	#pk2Name: string;
+	protected tableName: string;
+	protected pk1Name: string;
+	protected pk2Name: string;
 
 	constructor(tableName: string, pk1Name: string, pk2Name: string) {
-		this.#tableName = tableName;
-		this.#pk1Name = pk1Name;
-		this.#pk2Name = pk2Name;
+		this.tableName = tableName;
+		this.pk1Name = pk1Name;
+		this.pk2Name = pk2Name;
 	}
 
 	/**
@@ -22,7 +22,7 @@ export class CompositeCrudQueryable<T, TInit, TMut, PK1, PK2> {
 		const values = Object.values(object);
 
 		const queryResponse = await DB.query(
-			`INSERT INTO ${this.#tableName} (${keys.join(",")})` +
+			`INSERT INTO ${this.tableName} (${keys.join(",")})` +
 			`VALUES (${keys.map((prop, i) => `$${i + 1}`).join(",")})` +
 			"RETURNING *",
 			values
@@ -42,7 +42,7 @@ export class CompositeCrudQueryable<T, TInit, TMut, PK1, PK2> {
 	 */
 	public read = async (pk1: PK1, pk2: PK2): Promise<T> => {
 		const queryResponse = await DB.query(
-			`SELECT * FROM ${this.#tableName} WHERE ${this.#pk1Name}=$1 AND ${this.#pk2Name}=$2`,
+			`SELECT * FROM ${this.tableName} WHERE ${this.pk1Name}=$1 AND ${this.pk2Name}=$2`,
 			[pk1, pk2]
 		);
 		if (queryResponse.rows.length === 1) {
@@ -57,7 +57,7 @@ export class CompositeCrudQueryable<T, TInit, TMut, PK1, PK2> {
 	 * @returns Promise resolving to all entries of the object in its table in the database
 	 */
 	public readAll = async (): Promise<T[]> => {
-		const queryResponse = await DB.query(`SELECT * FROM ${this.#tableName}`);
+		const queryResponse = await DB.query(`SELECT * FROM ${this.tableName}`);
 		return queryResponse.rows;
 	};
 
@@ -76,8 +76,8 @@ export class CompositeCrudQueryable<T, TInit, TMut, PK1, PK2> {
 		// Use i+3 for parameter so that $1 and $2 are reserved for the PKs
 		const keys = Object.keys(mutateObject).map((prop, i) => `${prop}=$${i + 3}`);
 		const queryResponse = await DB.query(
-			`UPDATE ${this.#tableName} SET ${keys.join(",")}` +
-			` WHERE ${this.#pk1Name}=$1 AND ${this.#pk2Name}=$2 RETURNING *`,
+			`UPDATE ${this.tableName} SET ${keys.join(",")}` +
+			` WHERE ${this.pk1Name}=$1 AND ${this.pk2Name}=$2 RETURNING *`,
 			[pk1, pk2, ...Object.values(mutateObject)]
 		);
 		if (queryResponse.rows.length === 1) {
@@ -95,7 +95,7 @@ export class CompositeCrudQueryable<T, TInit, TMut, PK1, PK2> {
 	 */
 	public delete = async (pk1: PK1, pk2: PK2): Promise<boolean> => {
 		const queryResponse = await DB.query(
-			`DELETE FROM ${this.#tableName} WHERE ${this.#pk1Name}=$1 AND ${this.#pk2Name}=$2`,
+			`DELETE FROM ${this.tableName} WHERE ${this.pk1Name}=$1 AND ${this.pk2Name}=$2`,
 			[pk1, pk2]
 		);
 		return queryResponse.rowCount === 1;
