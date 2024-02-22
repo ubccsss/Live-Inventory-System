@@ -3,29 +3,18 @@ import ValidCategory,
 {Category, ValidCategoryInitializer, ValidCategoryMutator} from "../../types/db/public/ValidCategory";
 import {SimpleCrudQueryable} from "../SimpleCrudQueryable";
 
-const simpleCrudQueries:
-SimpleCrudQueryable<ValidCategory, ValidCategoryInitializer, ValidCategoryMutator, Category> = {
-	async create(object: ValidCategoryInitializer): Promise<ValidCategory> {
-		throw new Error("Method not implemented.");
-	},
+const tableName = "valid_category";
+const pkName = "category";
 
-	async read(category: Category): Promise<ValidCategory> {
-		throw new Error("Method not implemented.");
-	},
-
-	async readAll(): Promise<ValidCategory[]> {
-		throw new Error("Method not implemented.");
-	},
-
-	async update(category: Category, mutateObject: ValidCategoryMutator): Promise<ValidCategory> {
-		throw new Error("Method not implemented.");
-	},
-
-	async delete(category: Category): Promise<boolean> {
-		throw new Error("Method not implemented.");
+class ValidCategoryQuery extends SimpleCrudQueryable<
+	ValidCategory,
+	ValidCategoryInitializer,
+	ValidCategoryMutator,
+	Category
+> {
+	constructor() {
+		super(tableName, pkName);
 	}
-};
+}
 
-export default {
-	...simpleCrudQueries
-};
+export default new ValidCategoryQuery();
