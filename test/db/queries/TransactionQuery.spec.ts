@@ -1,7 +1,7 @@
 import {testCreate, testDelete, testRead, testReadAll, testUpdate} from "./SimpleCrudQueryable";
 import TransactionQuery from "../../../src/db/queries/TransactionQuery";
 import * as TestItems from "../test_objs/Transaction";
-import {TransactionInitializer, TransactionMutator} from "../../../src/types/db/public/Transaction";
+import {TransactionInitializer, TransactionMutator} from "../../../src/types/db_internal/public/Transaction";
 
 const testTransactioninitializer: TransactionInitializer = {
 	total: BigInt(100),

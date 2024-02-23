@@ -1,4 +1,4 @@
-import {ReimbursementInitializer, ReimbursementMutator} from "../../../src/types/db/public/Reimbursement";
+import {ReimbursementInitializer, ReimbursementMutator} from "../../../src/types/db_internal/public/Reimbursement";
 import {testCreate, testDelete, testRead, testReadAll, testUpdate} from "./SimpleCrudQueryable";
 import ReimbursementQuery from "../../../src/db/queries/ReimbursementQuery";
 import * as TestItems from "../test_objs/Reimbursement";

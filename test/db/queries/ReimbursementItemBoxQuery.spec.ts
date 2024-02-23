@@ -2,7 +2,7 @@ import ReimbursementItemBoxQuery from "../../../src/db/queries/ReimbursementItem
 import {
 	ReimbursementItemBoxInitializer,
 	ReimbursementItemBoxMutator
-} from "../../../src/types/db/public/ReimbursementItemBox";
+} from "../../../src/types/db_internal/public/ReimbursementItemBox";
 import {testCreate, testDelete, testRead, testReadAll, testUpdate} from "./CompositeCrudQueryable";
 import * as TestItems from "../test_objs/ReimbursementItemBox";
 import {expect} from "chai";

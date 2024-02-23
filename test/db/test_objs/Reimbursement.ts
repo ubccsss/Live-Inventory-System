@@ -1,4 +1,4 @@
-import Reimbursement from "../../../src/types/db/public/Reimbursement";
+import Reimbursement from "../../../src/types/db_internal/public/Reimbursement";
 
 export const reimbursementOne: Reimbursement = {
 	reimbursement_id: 1,

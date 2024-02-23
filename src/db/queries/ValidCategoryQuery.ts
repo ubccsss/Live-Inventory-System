@@ -1,6 +1,6 @@
 
 import ValidCategory,
-{Category, ValidCategoryInitializer, ValidCategoryMutator} from "../../types/db/public/ValidCategory";
+{Category, ValidCategoryInitializer, ValidCategoryMutator} from "../../types/db_internal/public/ValidCategory";
 import {SimpleCrudQueryable} from "../SimpleCrudQueryable";
 
 const tableName = "valid_category";

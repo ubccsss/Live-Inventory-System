@@ -1,4 +1,4 @@
-import CsssUser from "../../../src/types/db/public/CsssUser";
+import CsssUser from "../../../src/types/db_internal/public/CsssUser";
 
 export const csssUserJane: CsssUser = {
 	user_id: 1,

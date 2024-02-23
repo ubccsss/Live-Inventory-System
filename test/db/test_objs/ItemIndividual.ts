@@ -1,4 +1,4 @@
-import ItemIndividual from "../../../src/types/db/public/ItemIndividual";
+import ItemIndividual from "../../../src/types/db_internal/public/ItemIndividual";
 
 export const clifBar: ItemIndividual = {
 	item_id: 1,

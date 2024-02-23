@@ -1,6 +1,6 @@
 import {expect} from "chai";
 import ItemIndividualQuery from "../../../src/db/queries/ItemIndividualQuery";
-import {ItemIndividualInitializer, ItemIndividualMutator} from "../../../src/types/db/public/ItemIndividual";
+import {ItemIndividualInitializer, ItemIndividualMutator} from "../../../src/types/db_internal/public/ItemIndividual";
 import * as TestItems from "../test_objs/ItemIndividual";
 import {testCreate, testDelete, testRead, testReadAll, testUpdate} from "./SimpleCrudQueryable";
 

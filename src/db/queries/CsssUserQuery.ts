@@ -1,6 +1,6 @@
 
 import CsssUser,
-{UserId, CsssUserInitializer, CsssUserMutator} from "../../types/db/public/CsssUser";
+{UserId, CsssUserInitializer, CsssUserMutator} from "../../types/db_internal/public/CsssUser";
 import {SimpleCrudQueryable} from "../SimpleCrudQueryable";
 import * as DB from "../../db/DB";
 
@@ -22,6 +22,18 @@ class CsssUserQuery extends SimpleCrudQueryable<CsssUser, CsssUserInitializer, C
 		const queryResponse = await DB.query(
 			`SELECT * FROM ${this.tableName} WHERE email=$1 AND password=$2`,
 			[email, password]
+		);
+		if (queryResponse.rows.length === 1) {
+			return queryResponse.rows[0];
+		} else {
+			return null;
+		}
+	};
+
+	public resetPassword = async (email: string, newPassword: string): Promise<CsssUser> => {
+		const queryResponse = await DB.query(
+			`UPDATE ${this.tableName} SET password=$2 WHERE email=$1`,
+			[email, newPassword]
 		);
 		if (queryResponse.rows.length === 1) {
 			return queryResponse.rows[0];

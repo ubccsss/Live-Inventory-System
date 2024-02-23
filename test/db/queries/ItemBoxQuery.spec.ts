@@ -1,7 +1,7 @@
 import ItemBoxQuery from "../../../src/db/queries/ItemBoxQuery";
 import * as TestItems from "../test_objs/ItemBox";
 import {testCreate, testDelete, testRead, testReadAll, testUpdate} from "./SimpleCrudQueryable";
-import {ItemBoxInitializer, ItemBoxMutator} from "../../../src/types/db/public/ItemBox";
+import {ItemBoxInitializer, ItemBoxMutator} from "../../../src/types/db_internal/public/ItemBox";
 
 const testItemBoxInitializer: ItemBoxInitializer = {
 	item_id: 3,

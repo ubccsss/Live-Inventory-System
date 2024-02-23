@@ -25,7 +25,7 @@ module.exports = {
     database: "test_data",
   },
   preDeleteOutputFolder: true,
-  outputPath: "./src/types/db",
+  outputPath: "./src/types/db_internal",
 
   // Postgres bigints are mapped to JS bigints
   customTypeMap: {

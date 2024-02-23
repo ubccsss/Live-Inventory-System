@@ -2,7 +2,7 @@ import TransactionItemQuery from "../../../src/db/queries/TransactionItemQuery";
 import {testCreate, testDelete, testRead, testReadAll, testUpdate} from "./CompositeCrudQueryable";
 import * as TestItems from "../test_objs/TransactionItem";
 import {expect} from "chai";
-import {TransactionItemInitializer, TransactionItemMutator} from "../../../src/types/db/public/TransactionItem";
+import {TransactionItemInitializer, TransactionItemMutator} from "../../../src/types/db_internal/public/TransactionItem";
 
 const testTIInitializer: TransactionItemInitializer = {
 	transaction_id: 2,

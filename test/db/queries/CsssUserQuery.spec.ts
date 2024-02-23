@@ -3,7 +3,7 @@ import {expect} from "chai";
 import CsssUserQuery from "../../../src/db/queries/CsssUserQuery";
 import * as TestItems from "../test_objs/CsssUser";
 import {testCreate, testDelete, testRead, testReadAll, testUpdate} from "./SimpleCrudQueryable";
-import {CsssUserInitializer, CsssUserMutator} from "../../../src/types/db/public/CsssUser";
+import {CsssUserInitializer, CsssUserMutator} from "../../../src/types/db_internal/public/CsssUser";
 
 const testCsssInitializer: CsssUserInitializer = {
 	email: "peppa@peppa.pig",

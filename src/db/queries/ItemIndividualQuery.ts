@@ -1,6 +1,6 @@
 import ItemIndividual,
-{ItemId, ItemIndividualInitializer, ItemIndividualMutator} from "../../types/db/public/ItemIndividual";
-import {Category} from "../../types/db/public/ValidCategory";
+{ItemId, ItemIndividualInitializer, ItemIndividualMutator} from "../../types/db_internal/public/ItemIndividual";
+import {Category} from "../../types/db_internal/public/ValidCategory";
 import {SimpleCrudQueryable} from "../SimpleCrudQueryable";
 import * as DB from "../../db/DB";
 

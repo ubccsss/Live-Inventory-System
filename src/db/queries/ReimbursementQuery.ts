@@ -1,6 +1,6 @@
 
 import Reimbursement,
-{ReimbursementId, ReimbursementInitializer, ReimbursementMutator} from "../../types/db/public/Reimbursement";
+{ReimbursementId, ReimbursementInitializer, ReimbursementMutator} from "../../types/db_internal/public/Reimbursement";
 import {SimpleCrudQueryable} from "../SimpleCrudQueryable";
 
 const tableName = "reimbursement";
