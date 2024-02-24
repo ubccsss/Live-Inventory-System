@@ -31,7 +31,7 @@ describe("CsssUser Query Tests", () => {
 	const csssMutator: CsssUserMutator = {
 		email: "george@peppa.pig",
 		first_name: "George",
-		password: "hashhash"
+		is_treasurer: true
 	};
 	testUpdate(CsssUserQuery, {
 		testInitializer: testCsssInitializer,

@@ -1,29 +1,29 @@
-import CsssUser from "../../../src/types/db_internal/public/CsssUser";
+import {FriendlyCsssUser} from "../../../src/types/DBTypes";
 
-export const csssUserJane: CsssUser = {
+export const csssUserJane: FriendlyCsssUser = {
 	user_id: 1,
 	email: "jane@ubccsss.org",
-	password: "hash1",
+	// password: "hash1",
 	first_name: "Jane",
 	last_name: "Doe",
 	phone_number: "1234567890",
 	is_treasurer: false
 };
 
-export const csssUserGeorge: CsssUser = {
+export const csssUserGeorge: FriendlyCsssUser = {
 	user_id: 2,
 	email: "george@ubccsss.org",
-	password: "hash2",
+	// password: "hash2",
 	first_name: "George",
 	last_name: "Smith",
 	phone_number: "7776665555",
 	is_treasurer: false
 };
 
-export const csssUserAl: CsssUser = {
+export const csssUserAl: FriendlyCsssUser = {
 	user_id: 3,
 	email: "al@ubccsss.org",
-	password: "hash3",
+	// password: "hash3",
 	first_name: "Al",
 	last_name: "Jones",
 	phone_number: "1112223333",
