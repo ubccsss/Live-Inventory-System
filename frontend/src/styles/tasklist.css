@@ -1,0 +1,150 @@
+
+.background{
+	height: 100vh;
+	width:100%;
+	background-size:cover;
+	background-color: #535353; 
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow:scroll;
+	/*Same as .tasklist*/
+	min-height: 1024px;
+	min-width: 768px;
+}
+
+.tasklist{
+	/*always occupy 50% of the entire screen
+	padding-left: 25%;
+	padding-right: 25%;
+	width: 1px;*/
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+	position: absolute;
+	width: 768px;
+	height: 1024px;
+	background-color: #333; 
+
+	align-items: start;
+	align-content: start;
+
+}
+
+.manageInventory {
+	color: #fff;
+	font-size: 48px;
+	font-weight: bold;
+	font-family: Open Sans, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+	  'Liberation Sans', sans-serif;
+	position: absolute;
+	
+	top: 0;
+	height: 118px;
+	text-align: center;
+	width: 100%;
+  }
+
+
+  .viewUpdateInventory {
+	width: 100%;
+	position: absolute;
+	top: 118px;
+  }
+
+ .viewUpdateInventoryButton{
+	width: 320px;
+	height: 80px;
+	border-radius: 5px;
+	background-color: #d9c4e3;
+
+	color: #333;
+	font-size: 24px;
+	font-weight: bold;
+	font-family: Open Sans, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+	  'Liberation Sans', sans-serif;
+	align-items: center;
+	text-align: center;
+  }
+
+  .getShoppingList {
+	width: 100%;
+	position: absolute;
+	top: 236px;
+
+	
+  }
+
+  .getShoppingListButton {
+	width: 320px;
+	height: 80px;
+	border-radius: 5px;
+	background-color: #d9c4e3;
+
+	color: #333;
+	font-size: 24px;
+	font-weight: bold;
+	font-family: Open Sans, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+	  'Liberation Sans', sans-serif;
+	align-items: center;
+	text-align: center;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.test{
+	width: 422;
+	 height: 118; left: 0; top: 0; 
+	 position: absolute; 
+	 text-align: center; 
+	 color: #333333; 
+	 font-size: 100%; 
+	font-weight: 700; 
+	word-wrap: break-word
+}
