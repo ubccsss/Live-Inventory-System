@@ -43,13 +43,23 @@ class ReimbursementQuery extends SimpleCrudQueryable<
 	/**
 	 * Searches in the table for all Reimbursements that are linked to a particular user.
 	 * @param csssUser User to find Reimbursements for
-	 * @returns All Reimbursements created by the given user
+	 * @returns Promise resolving to all Reimbursements created by the given user
 	 */
 	public async readAllFromUser(csssUser: UserId): Promise<FriendlyReimbursement[]> {
 		const queryResponse = await DB.query(
 			"SELECT * FROM reimbursement WHERE user_id=$1",
 			[csssUser]
 		);
+		return Promise.all(queryResponse.rows.map(async (row) => this.getFriendlyReimbursement(row)));
+	}
+
+	/**
+	 * Searches in the table for all Reimbursements that have not been reimbursed yet.
+	 * @returns Promise resolving to all unreimbursed Reimbursements
+	 */
+	public async readAllUnreimbursed(): Promise<FriendlyReimbursement[]> {
+		const queryResponse = await DB.query(
+			"SELECT * FROM reimbursement WHERE reimbursed IS NOT TRUE");
 		return Promise.all(queryResponse.rows.map(async (row) => this.getFriendlyReimbursement(row)));
 	}
 

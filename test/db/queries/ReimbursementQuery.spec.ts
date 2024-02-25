@@ -47,6 +47,7 @@ describe("Reimbursement Query Tests", () => {
 		receipt_img_url: "url3",
 		purchase_total: BigInt(1000),
 		purchase_date: new Date("2024-02-09T08:00:00.000Z"),
+		reimbursed: true,
 		user_id: 1
 	};
 
@@ -62,6 +63,18 @@ describe("Reimbursement Query Tests", () => {
 		});
 		it("returns empty list for user with no reimbursements", async () => {
 			expect(await ReimbursementQuery.readAllFromUser(3)).to.be.empty;
+		});
+	});
+
+	describe("readAllUnreimbursed()", () => {
+		it("returns only unreimbursed reimbursements", async () => {
+			const createdItem = await ReimbursementQuery.create(testMultipleReimbursementInitializer);
+			try {
+				const reimbursements = await ReimbursementQuery.readAllUnreimbursed();
+				expect(reimbursements).to.have.deep.members([TestItems.reimbursementOne, TestItems.reimbursementTwo]);
+			} finally {
+				ReimbursementQuery.delete(createdItem.reimbursement_id);
+			}
 		});
 	});
 });
