@@ -1,9 +1,11 @@
 
 import {FriendlyReimbursement} from "../../types/DBTypes";
+import {UserId} from "../../types/db_internal/public/CsssUser";
 import Reimbursement,
 {ReimbursementId, ReimbursementInitializer, ReimbursementMutator} from "../../types/db_internal/public/Reimbursement";
 import {SimpleCrudQueryable} from "../SimpleCrudQueryable";
 import ReimbursementItemBoxQuery from "./ReimbursementItemBoxQuery";
+import * as DB from "../../db/DB";
 
 const tableName = "reimbursement";
 const pkName = "reimbursement_id";
@@ -36,6 +38,19 @@ class ReimbursementQuery extends SimpleCrudQueryable<
 		mutateObject: ReimbursementMutator
 	): Promise<FriendlyReimbursement> {
 		return await this.getFriendlyReimbursement(await super.update(primaryKey, mutateObject));
+	}
+
+	/**
+	 * Searches in the table for all Reimbursements that are linked to a particular user.
+	 * @param csssUser User to find Reimbursements for
+	 * @returns All Reimbursements created by the given user
+	 */
+	public async readAllFromUser(csssUser: UserId): Promise<FriendlyReimbursement[]> {
+		const queryResponse = await DB.query(
+			"SELECT * FROM reimbursement WHERE user_id=$1",
+			[csssUser]
+		);
+		return Promise.all(queryResponse.rows.map(async (row) => this.getFriendlyReimbursement(row)));
 	}
 
 	private async getFriendlyReimbursement(reimbursement: Reimbursement): Promise<FriendlyReimbursement> {
