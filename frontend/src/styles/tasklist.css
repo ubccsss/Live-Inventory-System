@@ -1,4 +1,3 @@
-
 .background{
 	height: 100vh;
 	width:100%;
@@ -10,7 +9,7 @@
 	align-items: center;
 	overflow:scroll;
 	/*Same as .tasklist*/
-	min-height: 1024px;
+	min-height: 946px;
 	min-width: 768px;
 }
 
@@ -26,7 +25,7 @@
 
 	position: absolute;
 	width: 768px;
-	height: 1024px;
+	height: 946px;
 	background-color: #333; 
 
 	align-items: start;
@@ -34,68 +33,71 @@
 
 }
 
-.manageInventory {
+.text-fff-48px-OpenSans {
 	color: #fff;
 	font-size: 48px;
 	font-weight: bold;
 	font-family: Open Sans, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
 	  'Liberation Sans', sans-serif;
 	position: absolute;
-	
-	top: 0;
+
 	height: 118px;
 	text-align: center;
 	width: 100%;
   }
 
+.button-d9c4e3-24px-OpenSans{
+	width: 320px;
+	height: 80px;
+	border-radius: 5px;
+	background-color: #d9c4e3;
 
-  .viewUpdateInventory {
+	color: #333;
+	font-size: 24px;
+	font-weight: bold;
+	font-family: Open Sans, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+	  'Liberation Sans', sans-serif;
+	align-items: center;
+	text-align: center;
+}
+
+.manageInventory {
+	top: 0px;
+}
+
+.viewUpdateInventory {
 	width: 100%;
 	position: absolute;
 	top: 118px;
-  }
+}
 
- .viewUpdateInventoryButton{
-	width: 320px;
-	height: 80px;
-	border-radius: 5px;
-	background-color: #d9c4e3;
-
-	color: #333;
-	font-size: 24px;
-	font-weight: bold;
-	font-family: Open Sans, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-	  'Liberation Sans', sans-serif;
-	align-items: center;
-	text-align: center;
-  }
-
-  .getShoppingList {
+.getShoppingList {
 	width: 100%;
 	position: absolute;
 	top: 236px;
+}
 
-	
-  }
+.finance {
+	top: 354px;
+}
 
-  .getShoppingListButton {
-	width: 320px;
-	height: 80px;
-	border-radius: 5px;
-	background-color: #d9c4e3;
+.transactionHistory{
+	width: 100%;
+	position: absolute;
+	top: 491px;
+}
 
-	color: #333;
-	font-size: 24px;
-	font-weight: bold;
-	font-family: Open Sans, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-	  'Liberation Sans', sans-serif;
-	align-items: center;
-	text-align: center;
-  }
+.reimbursementRequest{
+	width: 100%;
+	position: absolute;
+	top: 609px;
+}
 
-
-
-
+.logout{
+	width: 100%;
+	position: absolute;
+	top: 828px;
+}
 
 
 
