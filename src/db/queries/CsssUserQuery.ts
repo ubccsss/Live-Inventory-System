@@ -8,9 +8,12 @@ import {FriendlyCsssUser} from "../../types/DBTypes";
 const tableName = "csss_user";
 const pkName = "user_id";
 
-class InternalCsssUserQuery
-	extends SimpleCrudQueryable<CsssUser, CsssUserInitializer, CsssUserMutator, UserId> {
-
+class InternalCsssUserQuery extends SimpleCrudQueryable<
+	CsssUser,
+	CsssUserInitializer,
+	CsssUserMutator,
+	UserId
+> {
 	constructor() {
 		super(tableName, pkName);
 	}
@@ -54,12 +57,31 @@ class CsssUserQuery extends SimpleCrudQueryable<FriendlyCsssUser, CsssUserInitia
 	}
 
 	/**
+	 * Tries to find the user with the given email.
+	 * @param email Email of the given user
+	 * @returns Promise resolving to the FriendlyCsssUser with the given email, or null if no user found
+	 */
+	public async readFromEmail(email: string): Promise<FriendlyCsssUser> {
+		const queryResponse = await DB.query(
+			`SELECT * FROM ${this.tableName} WHERE email=$1`,
+			[email]
+		);
+		if (queryResponse.rows.length === 1) {
+			const user = queryResponse.rows[0];
+			delete user.password;
+			return user;
+		} else {
+			return null;
+		}
+	}
+
+	/**
 	 * Tries to authenticate the user with the given credentials.
 	 * @param email Email of the given user
 	 * @param password Password hash of the given user
-	 * @returns Promise resolving to the CsssUser with the given credentials, or null if no user found
+	 * @returns Promise resolving to the FriendlyCsssUser with the given credentials, or null if no user found
 	 */
-	public authenticateUser = async (email: string, password: string): Promise<FriendlyCsssUser> => {
+	public async authenticateUser(email: string, password: string): Promise<FriendlyCsssUser> {
 		const queryResponse = await DB.query(
 			`SELECT * FROM ${this.tableName} WHERE email=$1 AND password=$2`,
 			[email, password]
@@ -71,19 +93,7 @@ class CsssUserQuery extends SimpleCrudQueryable<FriendlyCsssUser, CsssUserInitia
 		} else {
 			return null;
 		}
-	};
-
-	public resetPassword = async (email: string, newPassword: string): Promise<CsssUser> => {
-		const queryResponse = await DB.query(
-			`UPDATE ${this.tableName} SET password=$2 WHERE email=$1`,
-			[email, newPassword]
-		);
-		if (queryResponse.rows.length === 1) {
-			return queryResponse.rows[0];
-		} else {
-			return null;
-		}
-	};
+	}
 }
 
 export default new CsssUserQuery();
