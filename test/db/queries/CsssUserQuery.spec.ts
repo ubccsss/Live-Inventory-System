@@ -61,7 +61,7 @@ describe("CsssUser Query Tests", () => {
 
 	describe("readFromEmail()", () => {
 		it("returns user with matching email", async () => {
-			expect(await CsssUserQuery.readFromEmail("jane@ubccsss.org")).to.equal(TestItems.csssUserJane);
+			expect(await CsssUserQuery.readFromEmail("jane@ubccsss.org")).to.deep.equal(TestItems.csssUserJane);
 		});
 		it("returns null when email does not match", async () => {
 			expect(await CsssUserQuery.readFromEmail("fake")).to.be.null;
