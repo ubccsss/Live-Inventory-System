@@ -4,6 +4,7 @@ import Transaction,
 {TransactionId, TransactionInitializer, TransactionMutator} from "../../types/db_internal/public/Transaction";
 import {SimpleCrudQueryable} from "../SimpleCrudQueryable";
 import TransactionItemQuery from "./TransactionItemQuery";
+import * as DB from "../../db/DB";
 
 const tableName = "transaction";
 const pkName = "transaction_id";
@@ -33,6 +34,19 @@ class TransactionQuery extends SimpleCrudQueryable<
 
 	public async update(primaryKey: TransactionId, mutateObject: TransactionMutator): Promise<FriendlyTransaction> {
 		return await this.getFriendlyTransaction(await super.update(primaryKey, mutateObject));
+	}
+
+	/**
+	 * Searches for all transactions that have the specified email.
+	 * @param email Email to search for
+	 * @returns Promise resolving to all transactions in the table with the specified email
+	 */
+	public async readAllFromEmail(email: string): Promise<FriendlyTransaction[]> {
+		const queryResponse = await DB.query(
+			"SELECT * FROM transaction WHERE payer_email=$1",
+			[email]
+		);
+		return Promise.all(queryResponse.rows.map(async (row) => this.getFriendlyTransaction(row)));
 	}
 
 	private async getFriendlyTransaction(transaction: Transaction): Promise<FriendlyTransaction> {
