@@ -1,5 +1,5 @@
 
-import {FriendlyTransaction} from "../../types/DBTypes";
+import {FriendlyTransaction} from "../../types/DBFriendlyTypes";
 import Transaction,
 {TransactionId, TransactionInitializer, TransactionMutator} from "../../types/db_internal/public/Transaction";
 import {SimpleCrudQueryable} from "../SimpleCrudQueryable";

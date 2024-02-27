@@ -1,4 +1,4 @@
-import {FriendlyTransaction} from "../../../src/types/DBTypes";
+import {FriendlyTransaction} from "../../../src/types/DBFriendlyTypes";
 
 export const transactionOne: FriendlyTransaction = {
 	transaction_id: 1,

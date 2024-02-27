@@ -1,4 +1,4 @@
-import {FriendlyReimbursement} from "../../../src/types/DBTypes";
+import {FriendlyReimbursement} from "../../../src/types/DBFriendlyTypes";
 
 export const reimbursementOne: FriendlyReimbursement = {
 	reimbursement_id: 1,

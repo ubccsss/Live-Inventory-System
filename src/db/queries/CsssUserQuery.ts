@@ -2,7 +2,7 @@
 import CsssUser,
 {UserId, CsssUserInitializer, CsssUserMutator} from "../../types/db_internal/public/CsssUser";
 import {SimpleCrudQueryable} from "../SimpleCrudQueryable";
-import {FriendlyCsssUser} from "../../types/DBTypes";
+import {FriendlyCsssUser} from "../../types/DBFriendlyTypes";
 import * as DB from "../../db/DB";
 
 const tableName = "csss_user";

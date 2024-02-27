@@ -1,4 +1,4 @@
-import {FriendlyCsssUser} from "../../../src/types/DBTypes";
+import {FriendlyCsssUser} from "../../../src/types/DBFriendlyTypes";
 
 export const csssUserJane: FriendlyCsssUser = {
 	user_id: 1,

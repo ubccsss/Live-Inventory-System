@@ -1,5 +1,5 @@
 
-import {FriendlyReimbursement} from "../../types/DBTypes";
+import {FriendlyReimbursement} from "../../types/DBFriendlyTypes";
 import {UserId} from "../../types/db_internal/public/CsssUser";
 import Reimbursement,
 {ReimbursementId, ReimbursementInitializer, ReimbursementMutator} from "../../types/db_internal/public/Reimbursement";

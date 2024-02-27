@@ -2,7 +2,7 @@ import {testCreate, testDelete, testRead, testReadAll, testUpdate} from "./Simpl
 import TransactionQuery from "../../../src/db/queries/TransactionQuery";
 import * as TestItems from "../test_objs/Transaction";
 import {TransactionInitializer, TransactionMutator} from "../../../src/types/db_internal/public/Transaction";
-import { expect } from "chai";
+import {expect} from "chai";
 
 const testTransactioninitializer: TransactionInitializer = {
 	total: BigInt(100),
