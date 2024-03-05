@@ -1,12 +1,20 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
 import Navbar from "./components/Navbar";
-import ShoppingList from "./components/ShoppingList";
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<ShoppingList />} />
+        <Route
+          path="/"
+          element={
+            <Navbar
+              title="Catalogue"
+              needbuttons={false}
+              isofficerpage={false}
+            />
+          }
+        />
         <Route
           path="/store"
           element={
@@ -16,7 +24,7 @@ const App = () => {
         <Route
           path="/officer"
           element={
-            <Navbar title="Login" needbuttons={true} isofficerpage={true} />
+            <Navbar title="Login" needbuttons={false} isofficerpage={true} />
           }
         />
         <Route

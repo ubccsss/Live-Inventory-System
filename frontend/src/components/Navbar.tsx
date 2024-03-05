@@ -11,27 +11,22 @@ const Navbar = ({ title, needbuttons, isofficerpage }: NavbarProps) => {
     <div className={isofficerpage ? "darkmode" : "lightmode"}>
       {needbuttons && (
         <div className="flex justify-end right-4 p-4 text-black-700">
-          <Link
-            to="/officer/mainmenu"
-            className={isofficerpage ? "btn-o mr-4" : "btn-c mr-4"}
-          >
+          <Link to="/officer/mainmenu" className="btn-o">
             Back to Main
           </Link>
 
-          <Link to="/officer" className={isofficerpage ? "btn-o" : "btn-c"}>
+          <Link to="/officer" className="btn-o">
             Logout
           </Link>
         </div>
       )}
       <div className="relative top-15 text-center text-6xl ">{title}</div>
       <hr
-        className="
-            h-px 
-            my-6
-            bg-white 
-            border-1
-            w-4/5
-            mx-auto"
+        className={
+          isofficerpage
+            ? "h-px my-6 bg-white border-1 w-4/5 mx-auto"
+            : "h-px my-6 bg-black border-1 w-4/5 mx-auto"
+        }
       />
     </div>
   );
