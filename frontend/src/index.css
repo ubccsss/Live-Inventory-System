@@ -2,10 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-.btn {
-  @apply w-40 h-10 bg-[#D9C4E3] rounded-[5px] text-xl text-center flex items-center justify-center;
+.btn-o {
+  @apply w-40 h-10 bg-[#D9C4E3] rounded-[5px] text-xl text-black flex items-center justify-center;
+}
+
+.btn-c {
+  @apply w-40 h-10 bg-[#4991BA] rounded-[5px] text-xl text-white flex items-center justify-center;
 }
 
 .darkmode {
-  @apply bg-zinc-800;
+  @apply bg-zinc-800 text-white;
+}
+
+.lightmode {
+  @apply bg-white text-black;
 }
