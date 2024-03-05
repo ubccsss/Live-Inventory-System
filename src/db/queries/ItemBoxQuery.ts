@@ -1,5 +1,5 @@
 
-import ItemBox, {ItemBoxId, ItemBoxInitializer, ItemBoxMutator} from "../../types/db/public/ItemBox";
+import ItemBox, {ItemBoxId, ItemBoxInitializer, ItemBoxMutator} from "../../types/db_internal/public/ItemBox";
 import {SimpleCrudQueryable} from "../SimpleCrudQueryable";
 
 const tableName = "item_box";

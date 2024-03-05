@@ -1,4 +1,4 @@
-import ReimbursementItemBox from "../../../src/types/db/public/ReimbursementItemBox";
+import ReimbursementItemBox from "../../../src/types/db_internal/public/ReimbursementItemBox";
 
 export const reimbursementOneClifBar: ReimbursementItemBox = {
 	reimbursement_id: 1,

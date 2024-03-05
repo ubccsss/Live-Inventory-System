@@ -2,7 +2,7 @@
 import * as TestItems from "../test_objs/ValidCategory";
 import {testCreate, testDelete, testRead, testReadAll} from "./SimpleCrudQueryable";
 import ValidCategoryQuery from "../../../src/db/queries/ValidCategoryQuery";
-import {ValidCategoryInitializer, ValidCategoryMutator} from "../../../src/types/db/public/ValidCategory";
+import {ValidCategoryInitializer, ValidCategoryMutator} from "../../../src/types/db_internal/public/ValidCategory";
 import {expect} from "chai";
 
 const testValidCategoryInitializer: ValidCategoryInitializer = {

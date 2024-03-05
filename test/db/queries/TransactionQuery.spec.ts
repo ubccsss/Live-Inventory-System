@@ -1,7 +1,8 @@
 import {testCreate, testDelete, testRead, testReadAll, testUpdate} from "./SimpleCrudQueryable";
 import TransactionQuery from "../../../src/db/queries/TransactionQuery";
 import * as TestItems from "../test_objs/Transaction";
-import {TransactionInitializer, TransactionMutator} from "../../../src/types/db/public/Transaction";
+import {TransactionInitializer, TransactionMutator} from "../../../src/types/db_internal/public/Transaction";
+import {expect} from "chai";
 
 const testTransactioninitializer: TransactionInitializer = {
 	total: BigInt(100),
@@ -39,5 +40,26 @@ describe("Transaction Query Tests", () => {
 		testInitializer: testTransactioninitializer,
 		nonexistentId: -1,
 		getId: (q) => q.transaction_id
+	});
+
+	const testJohnTransactionInitializer: TransactionInitializer = {
+		total: BigInt(50),
+		transaction_time: new Date("2024-02-22"),
+		payer_email: "john@example.com"
+	};
+
+	describe("readAllFromEmail()", () => {
+		it("returns all transactions with the specified email", async () => {
+			const testItem = await TransactionQuery.create(testJohnTransactionInitializer);
+			try {
+				expect(await TransactionQuery.readAllFromEmail("john@example.com")).
+					to.have.deep.members([TestItems.transactionOne, testItem]);
+			} finally {
+				await TransactionQuery.delete(testItem.transaction_id);
+			}
+		});
+		it("returns empty list if no transaction with email exists", async () => {
+			expect(await TransactionQuery.readAllFromEmail("fake")).to.be.empty;
+		});
 	});
 });

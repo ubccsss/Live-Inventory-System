@@ -1,4 +1,4 @@
-import ValidCategory from "../../../src/types/db/public/ValidCategory";
+import ValidCategory from "../../../src/types/db_internal/public/ValidCategory";
 
 export const categoryFood: ValidCategory = {
 	category: "food"

@@ -1,7 +1,8 @@
-import {ReimbursementInitializer, ReimbursementMutator} from "../../../src/types/db/public/Reimbursement";
+import {ReimbursementInitializer, ReimbursementMutator} from "../../../src/types/db_internal/public/Reimbursement";
 import {testCreate, testDelete, testRead, testReadAll, testUpdate} from "./SimpleCrudQueryable";
 import ReimbursementQuery from "../../../src/db/queries/ReimbursementQuery";
 import * as TestItems from "../test_objs/Reimbursement";
+import {expect} from "chai";
 
 const testReimbursementInitializer: ReimbursementInitializer = {
 	receipt_img_url: "url3",
@@ -40,5 +41,40 @@ describe("Reimbursement Query Tests", () => {
 		testInitializer: testReimbursementInitializer,
 		nonexistentId: -1,
 		getId: (q) => q.reimbursement_id
+	});
+
+	const testMultipleReimbursementInitializer: ReimbursementInitializer = {
+		receipt_img_url: "url3",
+		purchase_total: BigInt(1000),
+		purchase_date: new Date("2024-02-09T08:00:00.000Z"),
+		reimbursed: true,
+		user_id: 1
+	};
+
+	describe("readAllFromUser()", () => {
+		it("returns all reimbursements created by a user", async () => {
+			const createdItem = await ReimbursementQuery.create(testMultipleReimbursementInitializer);
+			try {
+				const reimbursements = await ReimbursementQuery.readAllFromUser(1);
+				expect(reimbursements).to.have.deep.members([TestItems.reimbursementOne, createdItem]);
+			} finally {
+				ReimbursementQuery.delete(createdItem.reimbursement_id);
+			}
+		});
+		it("returns empty list for user with no reimbursements", async () => {
+			expect(await ReimbursementQuery.readAllFromUser(3)).to.be.empty;
+		});
+	});
+
+	describe("readAllUnreimbursed()", () => {
+		it("returns only unreimbursed reimbursements", async () => {
+			const createdItem = await ReimbursementQuery.create(testMultipleReimbursementInitializer);
+			try {
+				const reimbursements = await ReimbursementQuery.readAllUnreimbursed();
+				expect(reimbursements).to.have.deep.members([TestItems.reimbursementOne, TestItems.reimbursementTwo]);
+			} finally {
+				ReimbursementQuery.delete(createdItem.reimbursement_id);
+			}
+		});
 	});
 });

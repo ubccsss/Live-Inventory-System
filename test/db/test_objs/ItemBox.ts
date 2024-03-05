@@ -1,4 +1,4 @@
-import ItemBox from "../../../src/types/db/public/ItemBox";
+import ItemBox from "../../../src/types/db_internal/public/ItemBox";
 
 export const itemBoxClifBar: ItemBox = {
 	item_box_id: 1,

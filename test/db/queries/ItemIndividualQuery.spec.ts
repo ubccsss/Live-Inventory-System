@@ -1,6 +1,6 @@
 import {expect} from "chai";
 import ItemIndividualQuery from "../../../src/db/queries/ItemIndividualQuery";
-import {ItemIndividualInitializer, ItemIndividualMutator} from "../../../src/types/db/public/ItemIndividual";
+import {ItemIndividualInitializer, ItemIndividualMutator} from "../../../src/types/db_internal/public/ItemIndividual";
 import * as TestItems from "../test_objs/ItemIndividual";
 import {testCreate, testDelete, testRead, testReadAll, testUpdate} from "./SimpleCrudQueryable";
 
@@ -61,6 +61,52 @@ describe("ItemIndividual Query Tests", () => {
 		});
 		it("returns empty array if category is invalid", async () => {
 			expect(await ItemIndividualQuery.readAllFromCategory("fake")).to.be.empty;
+		});
+	});
+
+	const testLowStockItemInitializer: ItemIndividualInitializer = {
+		name: "An entire pizza",
+		description: "Contains real tomatoes",
+		price: BigInt(1500),
+		category: "food",
+		img_url: "url",
+		reservable: false,
+		quantity_remaining: 1,
+		low_stock_threshold: 5,
+		last_restocked: new Date("2024-02-24T08:00:00.000Z"),
+		max_quantity_per_transaction: 1
+	};
+
+	describe("readAllLowStock()", () => {
+		it("returns an empty list if no items are at/below low stock threshold", async () => {
+			expect(await ItemIndividualQuery.readAllLowStock()).to.be.empty;
+		});
+		it("returns an item right at the low stock threshold", async () => {
+			const createdItem = await ItemIndividualQuery.create(testItemInitializer);
+			try {
+				expect(await ItemIndividualQuery.readAllLowStock()).to.have.deep.members([createdItem]);
+			} finally {
+				await ItemIndividualQuery.delete(createdItem.item_id);
+			}
+		});
+		it("returns an item below the low stock threshold", async () => {
+			const createdItem = await ItemIndividualQuery.create(testLowStockItemInitializer);
+			try {
+				expect(await ItemIndividualQuery.readAllLowStock()).to.have.deep.members([createdItem]);
+			} finally {
+				await ItemIndividualQuery.delete(createdItem.item_id);
+			}
+		});
+		it("returns all items at or below the low stock threshold", async () => {
+			const createdItemOne = await ItemIndividualQuery.create(testItemInitializer);
+			const createdItemTwo = await ItemIndividualQuery.create(testLowStockItemInitializer);
+			try {
+				expect(await ItemIndividualQuery.readAllLowStock()).
+					to.have.deep.members([createdItemOne, createdItemTwo]);
+			} finally {
+				await ItemIndividualQuery.delete(createdItemOne.item_id);
+				await ItemIndividualQuery.delete(createdItemTwo.item_id);
+			}
 		});
 	});
 });

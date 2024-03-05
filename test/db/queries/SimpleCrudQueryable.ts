@@ -92,6 +92,44 @@ export const testUpdate = <T, TInit, TMut, PK>(
 	});
 };
 
+// We know TMuts will always have all optional properties so {} will always be a valid TMut
+export const testCollectionUpdate = <T, TInit, TMut, PK>(
+	Queryable: SimpleCrudQueryable<T, TInit, TMut | object, PK>,
+	testProps: {
+		testInitializer: TInit,
+		testMutator: TMut,
+		nonexistentId: PK,
+		getId: (q: T) => PK
+	}
+) => {
+	const {testInitializer, testMutator, nonexistentId, getId} = testProps;
+	describe("update()", () => {
+		it("updates existing queryable", async () => {
+			const createdItem = await Queryable.create(testInitializer);
+			try {
+				const mutatedItem = {...createdItem, ...testMutator};
+				expect(await Queryable.update(getId(createdItem), testMutator)).to.deep.equal(mutatedItem);
+				expect(await Queryable.read(getId(createdItem))).to.deep.equal(mutatedItem);
+			} finally {
+				// cleanup
+				await Queryable.delete(getId(createdItem));
+			}
+		});
+		it("returns null when updating nonexistent queryable", async () => {
+			expect(await Queryable.update(nonexistentId, testMutator)).to.be.null;
+		});
+		it("returns null if given empty mutator", async () => {
+			const createdItem = await Queryable.create(testInitializer);
+			try {
+				expect(await Queryable.update(getId(createdItem), {})).to.be.null;
+			} finally {
+				// cleanup
+				await Queryable.delete(getId(createdItem));
+			}
+		});
+	});
+};
+
 export const testDelete = <T, TInit, TMut, PK>(
 	Queryable: SimpleCrudQueryable<T, TInit, TMut, PK>,
 	testProps: {

@@ -1,4 +1,4 @@
-import TransactionItem from "../../../src/types/db/public/TransactionItem";
+import TransactionItem from "../../../src/types/db_internal/public/TransactionItem";
 
 export const transactionOneRamen: TransactionItem = {
 	transaction_id: 1,
