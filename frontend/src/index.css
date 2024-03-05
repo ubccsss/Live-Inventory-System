@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 .btn-o {
   @apply w-40 h-10 bg-[#D9C4E3] rounded-[5px] text-xl text-black flex items-center justify-center;
 }
@@ -16,4 +15,5 @@
 
 .lightmode {
   @apply bg-white text-black;
+
 }
