@@ -1,17 +1,20 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
 import Navbar from "./components/Navbar";
+import ShoppingList from "./components/ShoppingList";
 const App = () => {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<ShoppingList />} />
         <Route
-          path="/"
+          path="/store"
           element={
             <Navbar
-              title="Catalogue"
-              needbuttons={false}
+              title="Login"
+              needbuttons={true}
               isofficerpage={false}
+              needtitle={true}
             />
           }
         />
