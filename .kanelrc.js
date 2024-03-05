@@ -26,7 +26,7 @@ module.exports = {
   },
   preDeleteOutputFolder: true,
   outputPath: "./src/types/db_internal",
-
+  enumStyle: "type",
   // Postgres bigints are mapped to JS bigints
   customTypeMap: {
     "pg_catalog.int8": "bigint"

@@ -6,8 +6,11 @@ import {expect} from "chai";
 
 const testTransactioninitializer: TransactionInitializer = {
 	total: BigInt(100),
+	tax_rate: 1200,
 	transaction_time: new Date("2024-02-05"),
-	payer_email: "peppa@pig.org"
+	payer_email: "peppa@pig.org",
+	payment_method: "card",
+	cleared: true
 };
 
 describe("Transaction Query Tests", () => {
@@ -44,8 +47,11 @@ describe("Transaction Query Tests", () => {
 
 	const testJohnTransactionInitializer: TransactionInitializer = {
 		total: BigInt(50),
+		tax_rate: 1025,
 		transaction_time: new Date("2024-02-22"),
-		payer_email: "john@example.com"
+		payer_email: "john@example.com",
+		payment_method: "cash",
+		cleared: false
 	};
 
 	describe("readAllFromEmail()", () => {

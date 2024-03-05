@@ -59,7 +59,8 @@ class TransactionQuery extends SimpleCrudQueryable<
 			items: items.map((item) => {
 				return {
 					item_id: item.item_id,
-					item_quantity: item.item_quantity
+					item_quantity: item.item_quantity,
+					item_price: item.item_price
 				};
 			})
 		};

@@ -15,7 +15,7 @@ export default interface CsssUser {
 
   phone_number: string | null;
 
-  is_treasurer: boolean | null;
+  is_treasurer: boolean;
 }
 
 /** Represents the initializer for the table public.csss_user */
@@ -31,7 +31,7 @@ export interface CsssUserInitializer {
   phone_number?: string | null;
 
   /** Default value: false */
-  is_treasurer?: boolean | null;
+  is_treasurer?: boolean;
 }
 
 /** Represents the mutator for the table public.csss_user */
@@ -46,6 +46,6 @@ export interface CsssUserMutator {
 
   phone_number?: string | null;
 
-  is_treasurer?: boolean | null;
+  is_treasurer?: boolean;
 }
 

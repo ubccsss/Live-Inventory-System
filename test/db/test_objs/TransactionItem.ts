@@ -3,17 +3,20 @@ import TransactionItem from "../../../src/types/db_internal/public/TransactionIt
 export const transactionOneRamen: TransactionItem = {
 	transaction_id: 1,
 	item_id: 2,
-	item_quantity: 1
+	item_quantity: 1,
+	item_price: BigInt(300)
 };
 
 export const transactionOneCola: TransactionItem = {
 	transaction_id: 1,
 	item_id: 3,
-	item_quantity: 1
+	item_quantity: 1,
+	item_price: BigInt(100)
 };
 
 export const transactionTwoClifBar: TransactionItem = {
 	transaction_id: 2,
 	item_id: 1,
-	item_quantity: 1
+	item_quantity: 1,
+	item_price: BigInt(100)
 };

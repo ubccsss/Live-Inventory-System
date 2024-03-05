@@ -10,7 +10,8 @@ import {
 const testTIInitializer: TransactionItemInitializer = {
 	transaction_id: 2,
 	item_id: 3,
-	item_quantity: 1
+	item_quantity: 1,
+	item_price: BigInt(100)
 };
 
 describe("TransactionItem Query Tests", () => {

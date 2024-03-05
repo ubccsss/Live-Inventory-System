@@ -8,6 +8,8 @@ export default interface TransactionItem {
   item_id: ItemId;
 
   item_quantity: number;
+
+  item_price: bigint;
 }
 
 /** Represents the initializer for the table public.transaction_item */
@@ -17,6 +19,8 @@ export interface TransactionItemInitializer {
   item_id: ItemId;
 
   item_quantity: number;
+
+  item_price: bigint;
 }
 
 /** Represents the mutator for the table public.transaction_item */
@@ -26,5 +30,7 @@ export interface TransactionItemMutator {
   item_id?: ItemId;
 
   item_quantity?: number;
+
+  item_price?: bigint;
 }
 

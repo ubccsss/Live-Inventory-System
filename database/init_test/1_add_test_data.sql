@@ -90,39 +90,42 @@ WHERE
 	name = 'Coca-Cola';
 
 INSERT INTO
-	transaction (total, transaction_time, payer_email)
+	transaction (total, tax_rate, transaction_time, payer_email, payment_method, cleared)
 VALUES
-	(400, '2024-01-10 14:00:36 -8:00', 'john@example.com'),
-	(200, '2024-01-21 10:21:11 -8:00', 'amy@example.com');
+	(448, 1200, '2024-01-10 14:00:36 -8:00', 'john@example.com', 'card', TRUE),
+	(110, 1025, '2024-01-21 10:21:11 -8:00', 'amy@example.com', 'cash', FALSE);
 
 INSERT INTO
-	transaction_item (transaction_id, item_id, item_quantity)
+	transaction_item (transaction_id, item_id, item_quantity, item_price)
 SELECT
 	1,
 	item_id,
-	1
+	1,
+	300
 FROM
 	item_individual
 WHERE
 	name = 'Shin Ramen';
 
 INSERT INTO
-	transaction_item (transaction_id, item_id, item_quantity)
+	transaction_item (transaction_id, item_id, item_quantity, item_price)
 SELECT
 	1,
 	item_id,
-	1
+	1,
+	100
 FROM
 	item_individual
 WHERE
 	name = 'Coca-Cola';
 
 INSERT INTO
-	transaction_item (transaction_id, item_id, item_quantity)
+	transaction_item (transaction_id, item_id, item_quantity, item_price)
 SELECT
 	2,
 	item_id,
-	1
+	1,
+	100
 FROM
 	item_individual
 WHERE
