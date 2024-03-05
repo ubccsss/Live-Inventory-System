@@ -23,6 +23,8 @@ describe("ReimbursementItemBox Query Tests", () => {
 	testRead(ReimbursementItemBoxQuery, {
 		testId1: TestItems.reimbursementOneClifBar.reimbursement_id,
 		testId2: TestItems.reimbursementOneClifBar.item_box_id,
+		nonexistentId1: -1,
+		nonexistentId2: -2,
 		testQueryable: TestItems.reimbursementOneClifBar
 	});
 
@@ -52,11 +54,13 @@ describe("ReimbursementItemBox Query Tests", () => {
 	describe("readAllFromItemBox()", () => {
 		it("returns all ReimbursementItemBoxes with the given itemBoxId", async () => {
 			const testRIB = await ReimbursementItemBoxQuery.create(testRIBInitializer);
-			const ramenRIBs = await ReimbursementItemBoxQuery.readAllFromItemBox(2);
-			expect(ramenRIBs).to.have.deep.members([testRIB, TestItems.reimbursementTwoRamen]);
-
-			// cleanup
-			await ReimbursementItemBoxQuery.delete(testRIB.reimbursement_id, testRIB.item_box_id);
+			try {
+				const ramenRIBs = await ReimbursementItemBoxQuery.readAllFromItemBox(2);
+				expect(ramenRIBs).to.have.deep.members([testRIB, TestItems.reimbursementTwoRamen]);
+			} finally {
+				// cleanup
+				await ReimbursementItemBoxQuery.delete(testRIB.reimbursement_id, testRIB.item_box_id);
+			}
 		});
 		it("returns empty array if no ReimbursementItemBoxes match given itemBoxId", async () => {
 			expect(await ReimbursementItemBoxQuery.readAllFromItemBox(-1)).to.be.empty;

@@ -2,60 +2,49 @@ import {ItemBoxId} from "../../types/db/public/ItemBox";
 import {ReimbursementId} from "../../types/db/public/Reimbursement";
 import ReimbursementItemBox,
 {ReimbursementItemBoxInitializer, ReimbursementItemBoxMutator} from "../../types/db/public/ReimbursementItemBox";
-import {CompositeCrudQueryable} from "../Queryable";
+import {CompositeCrudQueryable} from "../CompositeCrudQueryable";
+import * as DB from "../../db/DB";
 
-const compositeCrudQueries:
-	CompositeCrudQueryable<ReimbursementItemBox,
-		ReimbursementItemBoxInitializer,
-		ReimbursementItemBoxMutator,
-		ReimbursementId,
-		ItemBoxId>
-= {
-	async create(object: ReimbursementItemBoxInitializer): Promise<ReimbursementItemBox> {
-		throw new Error("Method not implemented.");
-	},
+const tableName = "reimbursement_item_box";
+const pk1Name = "reimbursement_id";
+const pk2Name = "item_box_id";
 
-	async read(reimbursementId: ReimbursementId, itemBoxId: ItemBoxId): Promise<ReimbursementItemBox> {
-		throw new Error("Method not implemented.");
-	},
-
-	async readAll(): Promise<ReimbursementItemBox[]> {
-		throw new Error("Method not implemented.");
-	},
-
-	async update(
-		reimbursementId: ReimbursementId,
-		pk2: ItemBoxId, mutateObject: ReimbursementItemBoxMutator
-	): Promise<ReimbursementItemBox> {
-		throw new Error("Method not implemented.");
-	},
-
-	async delete(reimbursementId: ReimbursementId, pk2: ItemBoxId): Promise<boolean> {
-		throw new Error("Method not implemented.");
+class ReimbursementItemBoxQuery extends CompositeCrudQueryable<
+	ReimbursementItemBox,
+	ReimbursementItemBoxInitializer,
+	ReimbursementItemBoxMutator,
+	ReimbursementId,
+	ItemBoxId
+> {
+	constructor() {
+		super(tableName, pk1Name, pk2Name);
 	}
-};
 
-const reimbursementItemBoxQueries = {
 	/**
 	 * Searches in the table for all ReimbursementItemBoxes that are linked to a particular item box.
 	 * @param itemBoxId Foreign key of item box to search for
 	 * @returns Promise resolving to array of ReimbursementItemBoxes linked to the given itemBoxId
 	 */
-	async readAllFromItemBox(itemBoxId: ItemBoxId): Promise<ReimbursementItemBox[]> {
-		throw new Error("Method not implemented.");
-	},
+	public readAllFromItemBox = async (itemBoxId: ItemBoxId): Promise<ReimbursementItemBox[]> => {
+		const queryResponse = await DB.query(
+			`SELECT * FROM ${this.tableName} WHERE ${this.pk2Name}=$1`,
+			[itemBoxId]
+		);
+		return queryResponse.rows;
+	};
 
 	/**
 	 * Searches in the table for all ReimbursementItemBoxes that are linked to a particular reimbursement.
 	 * @param reimbursementId Foreign key of reimbursement to search for
 	 * @returns Promise resolving to array of ReimbursementItemBoxes linked to the given reimbursementId
 	 */
-	async readAllFromReimbursement(reimbursementId: ReimbursementId): Promise<ReimbursementItemBox[]> {
-		throw new Error("Method not implemented.");
-	}
-};
+	public readAllFromReimbursement = async (reimbursementId: ReimbursementId): Promise<ReimbursementItemBox[]> => {
+		const queryResponse = await DB.query(
+			`SELECT * FROM ${this.tableName} WHERE ${this.pk1Name}=$1`,
+			[reimbursementId]
+		);
+		return queryResponse.rows;
+	};
+}
 
-export default {
-	...compositeCrudQueries,
-	...reimbursementItemBoxQueries
-};
+export default new ReimbursementItemBoxQuery();

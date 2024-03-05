@@ -20,6 +20,8 @@ describe("TransactionItem Query Tests", () => {
 	testRead(TransactionItemQuery, {
 		testId1: TestItems.transactionOneRamen.transaction_id,
 		testId2: TestItems.transactionOneRamen.item_id,
+		nonexistentId1: -1,
+		nonexistentId2: -2,
 		testQueryable: TestItems.transactionOneRamen
 	});
 
@@ -49,11 +51,13 @@ describe("TransactionItem Query Tests", () => {
 	describe("readAllFromItem()", () => {
 		it("returns all ReimbursementItems with the given itemId", async () => {
 			const testTI = await TransactionItemQuery.create(testTIInitializer);
-			const ramenRIBs = await TransactionItemQuery.readAllFromItem(3);
-			expect(ramenRIBs).to.have.deep.members([testTI, TestItems.transactionOneCola]);
-
-			// cleanup
-			await TransactionItemQuery.delete(testTI.transaction_id, testTI.item_id);
+			try {
+				const ramenRIBs = await TransactionItemQuery.readAllFromItem(3);
+				expect(ramenRIBs).to.have.deep.members([testTI, TestItems.transactionOneCola]);
+			} finally {
+				// cleanup
+				await TransactionItemQuery.delete(testTI.transaction_id, testTI.item_id);
+			}
 		});
 		it("returns empty array if no ReimbursementItems match given itemId", async () => {
 			expect(await TransactionItemQuery.readAllFromItem(-1)).to.be.empty;

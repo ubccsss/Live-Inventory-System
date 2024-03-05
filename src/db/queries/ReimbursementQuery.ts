@@ -1,31 +1,20 @@
 
 import Reimbursement,
 {ReimbursementId, ReimbursementInitializer, ReimbursementMutator} from "../../types/db/public/Reimbursement";
-import {SimpleCrudQueryable} from "../Queryable";
+import {SimpleCrudQueryable} from "../SimpleCrudQueryable";
 
-const simpleCrudQueries:
-SimpleCrudQueryable<Reimbursement, ReimbursementInitializer, ReimbursementMutator, ReimbursementId> = {
-	async create(object: ReimbursementInitializer): Promise<Reimbursement> {
-		throw new Error("Method not implemented.");
-	},
+const tableName = "reimbursement";
+const pkName = "reimbursement_id";
 
-	async read(reimbursementId: ReimbursementId): Promise<Reimbursement> {
-		throw new Error("Method not implemented.");
-	},
-
-	async readAll(): Promise<Reimbursement[]> {
-		throw new Error("Method not implemented.");
-	},
-
-	async update(reimbursementId: ReimbursementId, mutateObject: ReimbursementMutator): Promise<Reimbursement> {
-		throw new Error("Method not implemented.");
-	},
-
-	async delete(reimbursementId: ReimbursementId): Promise<boolean> {
-		throw new Error("Method not implemented.");
+class ReimbursementQuery extends SimpleCrudQueryable<
+	Reimbursement,
+	ReimbursementInitializer,
+	ReimbursementMutator,
+	ReimbursementId
+> {
+	constructor() {
+		super(tableName, pkName);
 	}
-};
+}
 
-export default {
-	...simpleCrudQueries
-};
+export default new ReimbursementQuery();

@@ -1,30 +1,14 @@
 
 import ItemBox, {ItemBoxId, ItemBoxInitializer, ItemBoxMutator} from "../../types/db/public/ItemBox";
-import {SimpleCrudQueryable} from "../Queryable";
+import {SimpleCrudQueryable} from "../SimpleCrudQueryable";
 
-const simpleCrudQueries:
-SimpleCrudQueryable<ItemBox, ItemBoxInitializer, ItemBoxMutator, ItemBoxId> = {
-	async create(object: ItemBoxInitializer): Promise<ItemBox> {
-		throw new Error("Method not implemented.");
-	},
+const tableName = "item_box";
+const pkName = "item_box_id";
 
-	async read(itemBoxId: ItemBoxId): Promise<ItemBox> {
-		throw new Error("Method not implemented.");
-	},
-
-	async readAll(): Promise<ItemBox[]> {
-		throw new Error("Method not implemented.");
-	},
-
-	async update(itemBoxId: ItemBoxId, mutateObject: ItemBoxMutator): Promise<ItemBox> {
-		throw new Error("Method not implemented.");
-	},
-
-	async delete(itemBoxId: ItemBoxId): Promise<boolean> {
-		throw new Error("Method not implemented.");
+class ItemBoxQuery extends SimpleCrudQueryable<ItemBox, ItemBoxInitializer, ItemBoxMutator, ItemBoxId> {
+	constructor() {
+		super(tableName, pkName);
 	}
-};
+}
 
-export default {
-	...simpleCrudQueries
-};
+export default new ItemBoxQuery();

@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import {expect} from "chai";
-import {CompositeCrudQueryable} from "../../../src/db/Queryable";
+import {CompositeCrudQueryable} from "../../../src/db/CompositeCrudQueryable";
 
 export const testCreate = <T, TInit, TMut, PK1, PK2>(
 	Queryable: CompositeCrudQueryable<T, TInit, TMut, PK1, PK2>,
@@ -30,13 +30,18 @@ export const testRead = <T, TInit, TMut, PK1, PK2>(
 	testProps: {
 		testId1: PK1,
 		testId2: PK2,
+		nonexistentId1: PK1,
+		nonexistentId2: PK2,
 		testQueryable: T
 	}
 ) => {
-	const {testId1, testId2, testQueryable} = testProps;
+	const {testId1, testId2, nonexistentId1, nonexistentId2, testQueryable} = testProps;
 	describe("read()", () => {
 		it("reads existing queryable", async () => {
-			expect(await Queryable.read(testId1, testId2)).to.equal(testQueryable);
+			expect(await Queryable.read(testId1, testId2)).to.deep.equal(testQueryable);
+		});
+		it("returns null when reading nonexistent queryable", async () => {
+			expect(await Queryable.read(nonexistentId1, nonexistentId2)).to.be.null;
 		});
 	});
 };
