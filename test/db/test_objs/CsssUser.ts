@@ -1,7 +1,7 @@
 import {FriendlyCsssUser} from "../../../src/types/DBFriendlyTypes";
 
 export const csssUserJane: FriendlyCsssUser = {
-	user_id: 1,
+	user_id: "44b309da-c186-4cb4-a7a2-5b4a47276fab",
 	email: "jane@ubccsss.org",
 	// password: "hash1",
 	first_name: "Jane",
@@ -11,7 +11,7 @@ export const csssUserJane: FriendlyCsssUser = {
 };
 
 export const csssUserGeorge: FriendlyCsssUser = {
-	user_id: 2,
+	user_id: "74c4d25d-49eb-4ab9-86e3-dd4d313f190c",
 	email: "george@ubccsss.org",
 	// password: "hash2",
 	first_name: "George",
@@ -21,7 +21,7 @@ export const csssUserGeorge: FriendlyCsssUser = {
 };
 
 export const csssUserAl: FriendlyCsssUser = {
-	user_id: 3,
+	user_id: "cb4ec76c-43b1-48a5-bb1a-b5da8c02a473",
 	email: "al@ubccsss.org",
 	// password: "hash3",
 	first_name: "Al",

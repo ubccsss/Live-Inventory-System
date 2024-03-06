@@ -133,6 +133,7 @@ WHERE
 
 INSERT INTO
 	csss_user (
+		user_id,
 		email,
 		password,
 		first_name,
@@ -142,6 +143,7 @@ INSERT INTO
 	)
 VALUES
 	(
+		'44b309da-c186-4cb4-a7a2-5b4a47276fab',
 		'jane@ubccsss.org',
 		'hash1',
 		'Jane',
@@ -150,6 +152,7 @@ VALUES
 		FALSE
 	),
 	(
+		'74c4d25d-49eb-4ab9-86e3-dd4d313f190c',
 		'george@ubccsss.org',
 		'hash2',
 		'George',
@@ -158,6 +161,7 @@ VALUES
 		FALSE
 	),
 	(
+		'cb4ec76c-43b1-48a5-bb1a-b5da8c02a473',
 		'al@ubccsss.org',
 		'hash3',
 		'Al',

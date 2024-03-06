@@ -1,5 +1,5 @@
 /** Identifier type for csss_user */
-export type UserId = number & {__flavor?: "UserId"};
+export type UserId = string & {__flavor?: "UserId"};
 
 /** Represents the table public.csss_user */
 export default interface CsssUser {
@@ -20,6 +20,9 @@ export default interface CsssUser {
 
 /** Represents the initializer for the table public.csss_user */
 export interface CsssUserInitializer {
+  // /** Default value: gen_random_uuid() */
+  // user_id?: UserId;
+
   email: string;
 
   password: string;
@@ -36,6 +39,8 @@ export interface CsssUserInitializer {
 
 /** Represents the mutator for the table public.csss_user */
 export interface CsssUserMutator {
+  user_id?: UserId;
+
   email?: string;
 
   password?: string;

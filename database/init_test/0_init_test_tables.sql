@@ -45,7 +45,7 @@ CREATE TABLE transaction_item (
 );
 
 CREATE TABLE csss_user (
-	user_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+	user_id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
 	email TEXT NOT NULL UNIQUE CHECK (email ~ '^[a-z0-9!.#$%&''*+/=?^_`{|}~-]+@([a-z0-9]+[.])+[a-z0-9]+$'),
 	password TEXT NOT NULL, -- should be a hash
 	first_name TEXT NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE reimbursement (
 	purchase_total BIGINT NOT NULL CONSTRAINT positive_purchase_total CHECK (purchase_total > 0),
 	purchase_date DATE NOT NULL,
 	reimbursed BOOL NOT NULL DEFAULT FALSE,
-	user_id INT NOT NULL REFERENCES csss_user ON UPDATE CASCADE ON DELETE RESTRICT -- don't allow an officer to be deleted if they have reimbursements
+	user_id uuid NOT NULL REFERENCES csss_user ON UPDATE CASCADE ON DELETE RESTRICT -- don't allow an officer to be deleted if they have reimbursements
 );
 
 CREATE TABLE reimbursement_item_box (

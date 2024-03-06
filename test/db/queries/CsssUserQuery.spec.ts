@@ -23,7 +23,7 @@ describe("CsssUser Query Tests", () => {
 	testRead(CsssUserQuery, {
 		testId: TestItems.csssUserJane.user_id,
 		testQueryable: TestItems.csssUserJane,
-		nonexistentId: -1
+		nonexistentId: "5db18bab-c0f0-4e32-a12d-56fb8ce5c871" // randomly generated fake uuid
 	});
 
 	testReadAll(CsssUserQuery, Object.values(TestItems));
@@ -36,13 +36,13 @@ describe("CsssUser Query Tests", () => {
 	testUpdate(CsssUserQuery, {
 		testInitializer: testCsssInitializer,
 		testMutator: csssMutator,
-		nonexistentId: -1,
+		nonexistentId: "5db18bab-c0f0-4e32-a12d-56fb8ce5c871",
 		getId: (q) => q.user_id
 	});
 
 	testDelete(CsssUserQuery, {
 		testInitializer: testCsssInitializer,
-		nonexistentId: -1,
+		nonexistentId: "5db18bab-c0f0-4e32-a12d-56fb8ce5c871",
 		getId: (q) => q.user_id
 	});
 

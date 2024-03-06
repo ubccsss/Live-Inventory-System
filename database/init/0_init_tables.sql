@@ -43,7 +43,7 @@ CREATE TABLE transaction_item (
 );
 
 CREATE TABLE csss_user (
-	user_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+	user_id uuid PRIMARY KEY GENERATED ALWAYS AS gen_random_uuid() STORED,
 	email TEXT NOT NULL UNIQUE CHECK (email ~ '^[a-z0-9!.#$%&''*+/=?^_`{|}~-]+@([a-z0-9]+[.])+[a-z0-9]+$'),
 	password TEXT NOT NULL, -- should be a hash
 	first_name TEXT NOT NULL,

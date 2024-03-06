@@ -4,3 +4,4 @@ type PaymentMethodType =
   | "card";
 
 export default PaymentMethodType;
+

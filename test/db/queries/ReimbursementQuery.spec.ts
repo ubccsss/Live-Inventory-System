@@ -8,7 +8,7 @@ const testReimbursementInitializer: ReimbursementInitializer = {
 	receipt_img_url: "url3",
 	purchase_total: BigInt(600),
 	purchase_date: new Date("2024-02-02T08:00:00.000Z"),
-	user_id: 3
+	user_id: "cb4ec76c-43b1-48a5-bb1a-b5da8c02a473"
 };
 
 describe("Reimbursement Query Tests", () => {
@@ -48,21 +48,21 @@ describe("Reimbursement Query Tests", () => {
 		purchase_total: BigInt(1000),
 		purchase_date: new Date("2024-02-09T08:00:00.000Z"),
 		reimbursed: true,
-		user_id: 1
+		user_id: "44b309da-c186-4cb4-a7a2-5b4a47276fab"
 	};
 
 	describe("readAllFromUser()", () => {
 		it("returns all reimbursements created by a user", async () => {
 			const createdItem = await ReimbursementQuery.create(testMultipleReimbursementInitializer);
 			try {
-				const reimbursements = await ReimbursementQuery.readAllFromUser(1);
+				const reimbursements = await ReimbursementQuery.readAllFromUser("44b309da-c186-4cb4-a7a2-5b4a47276fab");
 				expect(reimbursements).to.have.deep.members([TestItems.reimbursementOne, createdItem]);
 			} finally {
 				ReimbursementQuery.delete(createdItem.reimbursement_id);
 			}
 		});
 		it("returns empty list for user with no reimbursements", async () => {
-			expect(await ReimbursementQuery.readAllFromUser(3)).to.be.empty;
+			expect(await ReimbursementQuery.readAllFromUser("cb4ec76c-43b1-48a5-bb1a-b5da8c02a473")).to.be.empty;
 		});
 	});
 
