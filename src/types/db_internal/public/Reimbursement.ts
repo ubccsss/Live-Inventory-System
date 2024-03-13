@@ -13,7 +13,7 @@ export default interface Reimbursement {
 
   purchase_date: Date;
 
-  reimbursed: boolean | null;
+  reimbursed: boolean;
 
   user_id: UserId;
 }
@@ -27,7 +27,7 @@ export interface ReimbursementInitializer {
   purchase_date: Date;
 
   /** Default value: false */
-  reimbursed?: boolean | null;
+  reimbursed?: boolean;
 
   user_id: UserId;
 }
@@ -40,7 +40,7 @@ export interface ReimbursementMutator {
 
   purchase_date?: Date;
 
-  reimbursed?: boolean | null;
+  reimbursed?: boolean;
 
   user_id?: UserId;
 }

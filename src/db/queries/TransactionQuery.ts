@@ -49,6 +49,28 @@ class TransactionQuery extends SimpleCrudQueryable<
 		return Promise.all(queryResponse.rows.map(async (row) => this.getFriendlyTransaction(row)));
 	}
 
+	/**
+	 * Searches for all transactions that have cleared payment.
+	 * @returns Promise resolving to all cleared transactions in the table
+	 */
+	public async readAllCleared(): Promise<FriendlyTransaction[]> {
+		const queryResponse = await DB.query(
+			`SELECT * FROM ${this.tableName} WHERE cleared IS TRUE`
+		);
+		return Promise.all(queryResponse.rows.map(async (row) => this.getFriendlyTransaction(row)));
+	}
+
+	/**
+	 * Searches for all transactions that have not cleared payment.
+	 * @returns Promise resolving to all non-cleared transactions in the table
+	 */
+	public async readAllNotCleared(): Promise<FriendlyTransaction[]> {
+		const queryResponse = await DB.query(
+			`SELECT * FROM ${this.tableName} WHERE cleared IS NOT TRUE`
+		);
+		return Promise.all(queryResponse.rows.map(async (row) => this.getFriendlyTransaction(row)));
+	}
+
 	private async getFriendlyTransaction(transaction: Transaction): Promise<FriendlyTransaction> {
 		if (!transaction) {
 			return null;
@@ -59,7 +81,8 @@ class TransactionQuery extends SimpleCrudQueryable<
 			items: items.map((item) => {
 				return {
 					item_id: item.item_id,
-					item_quantity: item.item_quantity
+					item_quantity: item.item_quantity,
+					item_price: item.item_price
 				};
 			})
 		};

@@ -24,28 +24,34 @@ CREATE TABLE item_box (
 	quantity_per_box INT NOT NULL CONSTRAINT pos_quantity CHECK (quantity_per_box > 0)
 );
 
+CREATE TYPE payment_method_type AS ENUM ('cash', 'card');
+
 CREATE TABLE transaction (
 	transaction_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
 	total BIGINT NOT NULL CONSTRAINT nonneg_total CHECK (total >= 0),
-	transaction_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- auto create transaction timestamp
-	payer_email TEXT CHECK (payer_email ~ '^[a-z0-9!.#$%&''*+/=?^_`{|}~-]+@([a-z0-9]+[.])+[a-z0-9]+$')
+	tax_rate INT NOT NULL CONSTRAINT nonneg_tax_rate CHECK (tax_rate >= 0), -- represents a tax percent with 2 decimal points precision (ex. 10.25% -> 1025)
+	transaction_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- auto create transaction timestamp
+	payer_email TEXT NOT NULL CHECK (payer_email ~ '^[a-z0-9!.#$%&''*+/=?^_`{|}~-]+@([a-z0-9]+[.])+[a-z0-9]+$'),
+	payment_method payment_method_type NOT NULL,
+	cleared BOOL NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE transaction_item (
 	transaction_id INT NOT NULL REFERENCES transaction ON UPDATE CASCADE ON DELETE CASCADE, -- if we delete a transaction, also delete its details
 	item_id INT NOT NULL REFERENCES item_individual ON UPDATE CASCADE ON DELETE RESTRICT, -- don't allow an item that's in a transaction to be deleted
 	item_quantity INT NOT NULL CONSTRAINT positive_quantity CHECK (item_quantity > 0),
+	item_price BIGINT NOT NULL CONSTRAINT nonneg_price CHECK (item_price >= 0),
 	CONSTRAINT transaction_item_pk PRIMARY KEY (transaction_id, item_id)
 );
 
 CREATE TABLE csss_user (
-	user_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+	user_id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
 	email TEXT NOT NULL UNIQUE CHECK (email ~ '^[a-z0-9!.#$%&''*+/=?^_`{|}~-]+@([a-z0-9]+[.])+[a-z0-9]+$'),
 	password TEXT NOT NULL, -- should be a hash
 	first_name TEXT NOT NULL,
 	last_name TEXT NOT NULL,
 	phone_number VARCHAR(10) CHECK (phone_number ~ '^[0-9]{10}$'),
-	is_treasurer BOOL DEFAULT FALSE
+	is_treasurer BOOL NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE reimbursement (
@@ -53,8 +59,8 @@ CREATE TABLE reimbursement (
 	receipt_img_url TEXT NOT NULL,
 	purchase_total BIGINT NOT NULL CONSTRAINT positive_purchase_total CHECK (purchase_total > 0),
 	purchase_date DATE NOT NULL,
-	reimbursed BOOL DEFAULT FALSE,
-	user_id INT NOT NULL REFERENCES csss_user ON UPDATE CASCADE ON DELETE RESTRICT -- don't allow an officer to be deleted if they have reimbursements
+	reimbursed BOOL NOT NULL DEFAULT FALSE,
+	user_id uuid NOT NULL REFERENCES csss_user ON UPDATE CASCADE ON DELETE RESTRICT -- don't allow an officer to be deleted if they have reimbursements
 );
 
 CREATE TABLE reimbursement_item_box (

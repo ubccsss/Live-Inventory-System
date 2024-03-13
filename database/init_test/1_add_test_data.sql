@@ -90,39 +90,42 @@ WHERE
 	name = 'Coca-Cola';
 
 INSERT INTO
-	transaction (total, transaction_time, payer_email)
+	transaction (total, tax_rate, transaction_time, payer_email, payment_method, cleared)
 VALUES
-	(400, '2024-01-10 14:00:36 -8:00', 'john@example.com'),
-	(200, '2024-01-21 10:21:11 -8:00', 'amy@example.com');
+	(448, 1200, '2024-01-10 14:00:36 -8:00', 'john@example.com', 'card', TRUE),
+	(110, 1025, '2024-01-21 10:21:11 -8:00', 'amy@example.com', 'cash', FALSE);
 
 INSERT INTO
-	transaction_item (transaction_id, item_id, item_quantity)
+	transaction_item (transaction_id, item_id, item_quantity, item_price)
 SELECT
 	1,
 	item_id,
-	1
+	1,
+	300
 FROM
 	item_individual
 WHERE
 	name = 'Shin Ramen';
 
 INSERT INTO
-	transaction_item (transaction_id, item_id, item_quantity)
+	transaction_item (transaction_id, item_id, item_quantity, item_price)
 SELECT
 	1,
 	item_id,
-	1
+	1,
+	100
 FROM
 	item_individual
 WHERE
 	name = 'Coca-Cola';
 
 INSERT INTO
-	transaction_item (transaction_id, item_id, item_quantity)
+	transaction_item (transaction_id, item_id, item_quantity, item_price)
 SELECT
 	2,
 	item_id,
-	1
+	1,
+	100
 FROM
 	item_individual
 WHERE
@@ -130,6 +133,7 @@ WHERE
 
 INSERT INTO
 	csss_user (
+		user_id,
 		email,
 		password,
 		first_name,
@@ -139,6 +143,7 @@ INSERT INTO
 	)
 VALUES
 	(
+		'44b309da-c186-4cb4-a7a2-5b4a47276fab',
 		'jane@ubccsss.org',
 		'hash1',
 		'Jane',
@@ -147,6 +152,7 @@ VALUES
 		FALSE
 	),
 	(
+		'74c4d25d-49eb-4ab9-86e3-dd4d313f190c',
 		'george@ubccsss.org',
 		'hash2',
 		'George',
@@ -155,6 +161,7 @@ VALUES
 		FALSE
 	),
 	(
+		'cb4ec76c-43b1-48a5-bb1a-b5da8c02a473',
 		'al@ubccsss.org',
 		'hash3',
 		'Al',
