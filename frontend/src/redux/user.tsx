@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit"
-//import { connect } from 'react-redux';
 
 export type UserType = {
 	user: string | null,
@@ -13,7 +12,6 @@ const initialState : UserType = {
 	isLoggedIn: true,
 	isLoggedInKey: "isLoggedIn"
 }
-//localStorage.setItem("isLoggedIn", 'true');
 
 
 const userSlice = createSlice({
