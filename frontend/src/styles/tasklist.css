@@ -1,0 +1,100 @@
+.background{
+	height: 100vh;
+	width:100%;
+	background-size:cover;
+	background-color: #535353; 
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow:scroll;
+	/*Same as the .tasklist*/
+	min-width: 768px;
+	min-height: 946px;
+}
+
+.tasklist{
+	/*always occupy 50% of the entire screen
+	padding-left: 25%;
+	padding-right: 25%;
+	width: 1px;*/
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+	position: absolute;
+	min-width: 768px;
+	min-height: 931px;
+	background-color: #333; 
+
+	align-items: start;
+	align-content: start;
+
+}
+
+.text-fff-48px-OpenSans {
+	color: #fff;
+	font-size: 48px;
+	font-weight: bold;
+	font-family: Open Sans, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+	  'Liberation Sans', sans-serif;
+	position: absolute;
+
+	height: 118px;
+	text-align: center;
+	width: 100%;
+  }
+
+.button-d9c4e3-24px-OpenSans{
+	width: 320px;
+	height: 80px;
+	border-radius: 5px;
+	background-color: #d9c4e3;
+
+	color: #333;
+	font-size: 24px;
+	font-weight: bold;
+	font-family: Open Sans, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+	  'Liberation Sans', sans-serif;
+	align-items: center;
+	text-align: center;
+}
+
+.manageInventory {
+	top: 0px;
+}
+
+.viewUpdateInventory {
+	width: 100%;
+	position: absolute;
+	top: 118px;
+}
+
+.getShoppingList {
+	width: 100%;
+	position: absolute;
+	top: 236px;
+}
+
+.finance {
+	top: 354px;
+}
+
+.transactionHistory{
+	width: 100%;
+	position: absolute;
+	top: 491px;
+}
+
+.reimbursementRequest{
+	width: 100%;
+	position: absolute;
+	top: 609px;
+}
+
+.logout{
+	width: 100%;
+	position: absolute;
+	top: 828px;
+}
