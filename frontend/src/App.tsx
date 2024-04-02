@@ -7,13 +7,16 @@ import { configureStore } from '@reduxjs/toolkit'
 import userSlice from './redux/user.tsx'
 import React, { FC, ReactElement } from 'react'
 import { Provider } from 'react-redux';
+import Reimburse from "./components/reimburse.tsx";
+import reimbursement from "./redux/reimbursement.tsx";
 
 /**
  * Store
  */
 const store = configureStore({
 	reducer:{
-		user: userSlice
+		user: userSlice,
+		Reimburse: reimbursement
 	}
 });
 
@@ -89,16 +92,7 @@ const App = () => {
 					/>
 				}
 				/>
-				<Route
-				path="/officer/reimburse"
-				element={
-					<Navbar
-					title="Login"
-					needbuttons={true}
-					isofficerpage={true}
-					needtitle={true}
-					/>
-				}
+				<Route path="/officer/reimburse" element={<PrivateRoute childElement={<Reimburse/>}/>}
 				/>
 				<Route
 				path="/officer/inventory"

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 export type UserType = {
-	user: string | null,
+	user: string | null;
 	isLoggedIn: boolean;
 	isLoggedInKey: string;
 }
