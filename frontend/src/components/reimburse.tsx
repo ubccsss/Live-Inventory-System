@@ -6,24 +6,53 @@ import { useSelector } from "react-redux";
 import { IRootState } from "../App";
 import { useDispatch } from 'react-redux';
 import { displayReceipt, displayBankStatement, uploadBankStatement, uploadReceipt, saveReminbursement, submitReminbursement } from "../redux/reimbursement";
-import { Upload } from "./PDFUpload";
 import { useState } from "react";
+import Form from 'react-bootstrap/Form';
 
-const Reimburse = () => {
+interface UploaderProps {
+	fileType?: string | AcceptedFileType[];
+  }
+  
+enum AcceptedFileType {
+	Pdf = ".pdf"
+}
+
+interface Props {
+	action: string;
+	onChange?: (file:File) => void;
+  }
+
+  interface FileUploadProps {
+	onFileChange: (file: File) => void;
+	buttonLabel: string;
+  }
+
+const Reimburse  = (props:UploaderProps) => {
+	
 	const dispatch = useDispatch();
 	const [viewReceipt, setViewReceipt] = useState<boolean>(true);
 	const selectedColor = "selectedColor";
 	const unselectedColor = "unselectedColor";
 	const [receiptTabColor, setReceiptTabColor] = useState(selectedColor);
 	const [BSTabColor, setBSTabColor] = useState(unselectedColor);
-	const [receiptFile, setReceiptFile] = useState<File | undefined>(undefined);
-  
-	const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setReceiptFile(event?.target?.files?.[0]);
-	};
-  
-	const onUpload = () => {
-		console.log(receiptFile);
+	const [uploadedFile, setUploadedFile] = useState<File | undefined>(undefined);
+	const { fileType } = props;
+	const acceptedFormats: string | AcceptedFileType[] = 
+		fileType==undefined ? AcceptedFileType.Pdf : Array.isArray(fileType) ? fileType?.join(",") : fileType;
+	
+
+	function triggerFileUpload() {
+		document.getElementById('formFile')?.click();
+	}
+	
+	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const file = event.target.files?.[0];
+		setUploadedFile(file);
+		console.log("file received 0");
+		if (file) {
+			//TODO: PDF displayer]
+			console.log("file received:"+file.webkitRelativePath);
+		}
 	};
 
 	const receiptTabSelected = () => {
@@ -37,13 +66,7 @@ const Reimburse = () => {
 		setBSTabColor(selectedColor);
 		setViewReceipt(false);
 	};
-	
-	//const [saved, setSaved] = useState<boolean>(false);
-	//const [uploadedReceipt, setUploadedReceipt] = useState<boolean>(false);
-	//const [displayReceipt, setDisplayReceipt] = useState<boolean>(false);
-	//const [uploadedBankStatement, setUploadedBankStatement] = useState<boolean>(false);
-	//const [displayBankStatement, setDisplayBankStatement] = useState<boolean>(false);
-	
+
 	//TODO: use callbacks to trigger feedbacks () =>
 
 	return (
@@ -61,27 +84,26 @@ const Reimburse = () => {
 				<button className={`tab ${receiptTabColor}`} onClick={receiptTabSelected}>Receipt</button>
 				<button className={`tab ${BSTabColor}`} onClick={BSTabSelected}>Bank Statement</button>
 			</div>
+
 			<div className="PDFPreviewBackground"></div>
 
 			<div className="buttonGroup">
-				{viewReceipt && (<Button id="UploadReceipt" className='button-d9c4e3-24px-OpenSans' type="button" aria-pressed="true" onClick={() => dispatch(uploadReceipt(""))}>
-					Upload Receipt
-				</Button>)}
-				{!viewReceipt && (<Button id="UploadBank" className='button-d9c4e3-24px-OpenSans' type="button" aria-pressed="true" onSelect={() => dispatch(uploadBankStatement(""))}>
-					Upload Bank Statement
-				</Button>)}
-				<Button id="Save" className='button-d9c4e3-24px-OpenSans' type="button" aria-pressed="true">
+				<Form.Group controlId="formFile" className='formFile'>
+					<Form.Control type="file" className="hiddenElement" onChange={handleFileChange} hidden />
+					{viewReceipt && <Form.Control plaintext readOnly className='button-d9c4e3-21px-OpenSans' type="button" value="Upload Receipt" onClick={triggerFileUpload} aria-pressed="true"/>}
+					{!viewReceipt && <Form.Control plaintext readOnly className='button-d9c4e3-21px-OpenSans' type="button" value="Upload Bank Statement" onClick={triggerFileUpload} aria-pressed="true"/>}
+				</Form.Group>
+				
+				<Button id="Save" className='button-d9c4e3-21px-OpenSans' type="button" aria-pressed="true">
 					New Reimbursement
 				</Button>
-				<Button id="Save" className='button-d9c4e3-24px-OpenSans' type="button" aria-pressed="true" onClick={() => dispatch(saveReminbursement(""))}>
+				<Button id="Save" className='button-d9c4e3-21px-OpenSans' type="button" aria-pressed="true" onClick={() => dispatch(saveReminbursement(""))}>
 					Save
 				</Button>
-				<Button id="Submit" className='button-d9c4e3-24px-OpenSans' type="button" aria-pressed="true" onSelect={() => dispatch(submitReminbursement(""))}>
+				<Button id="Submit" className='button-d9c4e3-21px-OpenSans' type="button" aria-pressed="true" onSelect={() => dispatch(submitReminbursement(""))}>
 					Submit
 				</Button>
 			</div>
-			
-
 		</div>
 		
 		

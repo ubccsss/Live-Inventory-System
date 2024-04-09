@@ -6,8 +6,10 @@ export type Reimbursement = {
 	name: string|null;
 	saved: boolean;
 	uploadedReceipt: boolean;
+	receiptFile: File | undefined;
 	displayReceipt: boolean;
 	uploadedBankStatement: boolean;
+	bankStatementFile: File | undefined;
 	displayBankStatement: boolean;
 }
 
@@ -24,8 +26,10 @@ const initialState : Reimbursement = {
 	name: null,
 	saved: false,
 	uploadedReceipt: false,
+	receiptFile: undefined,
 	displayReceipt: true,
 	uploadedBankStatement: false,
+	bankStatementFile: undefined,
 	displayBankStatement: false,
 }
 
@@ -47,13 +51,13 @@ const reimbursementSlice = createSlice({
 		
 		uploadBankStatement (state, action)  {
 			//TODO: save to DB
-			action.payload;
+			state.bankStatementFile = action.payload;
 			state.uploadedBankStatement = true;
 		},
 		
 		uploadReceipt (state, action)  {
 			//TODO: save to DB
-			action.payload;
+			state.receiptFile = action.payload;
 			state.uploadedReceipt = true;
 			console.log("uploadReceipt");
 		},
