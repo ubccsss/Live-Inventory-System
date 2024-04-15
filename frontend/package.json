@@ -13,6 +13,7 @@
     "@reduxjs/toolkit": "^2.2.1",
     "bootstrap": "^5.3.3",
     "element-react": "^1.4.34",
+    "file-saver": "^2.0.5",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.1",
     "react-dom": "^18.2.0",

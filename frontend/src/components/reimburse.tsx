@@ -6,8 +6,11 @@ import { useSelector } from "react-redux";
 import { IRootState } from "../App";
 import { useDispatch } from 'react-redux';
 import { displayReceipt, displayBankStatement, uploadBankStatement, uploadReceipt, saveReminbursement, submitReminbursement } from "../redux/reimbursement";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert';
+ 
+
 
 interface UploaderProps {
 	fileType?: string | AcceptedFileType[];
@@ -17,17 +20,8 @@ enum AcceptedFileType {
 	Pdf = ".pdf"
 }
 
-interface Props {
-	action: string;
-	onChange?: (file:File) => void;
-  }
 
-  interface FileUploadProps {
-	onFileChange: (file: File) => void;
-	buttonLabel: string;
-  }
-
-const Reimburse  = (props:UploaderProps) => {
+const Reimburse  = (props: UploaderProps) => {
 	
 	const dispatch = useDispatch();
 	const [viewReceipt, setViewReceipt] = useState<boolean>(true);
@@ -35,11 +29,9 @@ const Reimburse  = (props:UploaderProps) => {
 	const unselectedColor = "unselectedColor";
 	const [receiptTabColor, setReceiptTabColor] = useState(selectedColor);
 	const [BSTabColor, setBSTabColor] = useState(unselectedColor);
-	const [uploadedFile, setUploadedFile] = useState<File | undefined>(undefined);
-	const { fileType } = props;
-	const acceptedFormats: string | AcceptedFileType[] = 
-		fileType==undefined ? AcceptedFileType.Pdf : Array.isArray(fileType) ? fileType?.join(",") : fileType;
-	
+	const [uploadedReceiptFile, setUploadedReceiptFile] = useState<File | undefined>(undefined);
+	const [uploadedBankStatementFile, setUploadedBankStatementFile] = useState<File | undefined>(undefined);
+	const [preview, setPreview] = useState<string | undefined>(undefined);
 
 	function triggerFileUpload() {
 		document.getElementById('formFile')?.click();
@@ -47,13 +39,31 @@ const Reimburse  = (props:UploaderProps) => {
 	
 	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const file = event.target.files?.[0];
-		setUploadedFile(file);
-		console.log("file received 0");
-		if (file) {
-			//TODO: PDF displayer]
-			console.log("file received:"+file.webkitRelativePath);
+		if(viewReceipt){
+			setUploadedReceiptFile(file);
+		}else{
+			setUploadedBankStatementFile(file);
 		}
+		
 	};
+
+	useEffect(() => {
+		if(viewReceipt && !uploadedReceiptFile){
+			setPreview(undefined);
+			return;
+		}else if(!viewReceipt && !uploadedBankStatementFile){
+			setPreview(undefined);
+			return;
+		}else if(viewReceipt && uploadedReceiptFile){
+			const receiptFileUrl = URL.createObjectURL(uploadedReceiptFile);
+			setPreview(receiptFileUrl);
+			return () => URL.revokeObjectURL(receiptFileUrl);
+		}else if(!viewReceipt && uploadedBankStatementFile){
+			const BSFileUrl = URL.createObjectURL(uploadedBankStatementFile);
+			setPreview(BSFileUrl);
+			return () => URL.revokeObjectURL(BSFileUrl);
+		}
+	}, [uploadedReceiptFile, uploadedBankStatementFile, viewReceipt]);
 
 	const receiptTabSelected = () => {
 		setReceiptTabColor(selectedColor);
@@ -70,7 +80,6 @@ const Reimburse  = (props:UploaderProps) => {
 	//TODO: use callbacks to trigger feedbacks () =>
 
 	return (
-	
 		<div className="darkmode min-h-screen">
 			<Navbar title="Reimburse" needbuttons={true} isofficerpage={true} needtitle={true}/>
 			<div className="receipt-name-input-group">
@@ -85,11 +94,13 @@ const Reimburse  = (props:UploaderProps) => {
 				<button className={`tab ${BSTabColor}`} onClick={BSTabSelected}>Bank Statement</button>
 			</div>
 
-			<div className="PDFPreviewBackground"></div>
+			<div className="previewBackground">
+				{(uploadedReceiptFile || uploadedBankStatementFile) && <iframe className="preview" src={preview} />}
+			</div>
 
 			<div className="buttonGroup">
 				<Form.Group controlId="formFile" className='formFile'>
-					<Form.Control type="file" className="hiddenElement" onChange={handleFileChange} hidden />
+					<Form.Control type="file" accept=".pdf, .png, .jpg, .jpeg" className="hiddenElement" onChange={handleFileChange} hidden />
 					{viewReceipt && <Form.Control plaintext readOnly className='button-d9c4e3-21px-OpenSans' type="button" value="Upload Receipt" onClick={triggerFileUpload} aria-pressed="true"/>}
 					{!viewReceipt && <Form.Control plaintext readOnly className='button-d9c4e3-21px-OpenSans' type="button" value="Upload Bank Statement" onClick={triggerFileUpload} aria-pressed="true"/>}
 				</Form.Group>
@@ -105,11 +116,9 @@ const Reimburse  = (props:UploaderProps) => {
 				</Button>
 			</div>
 		</div>
-		
-		
-	
-    
   );
+
+
 };
 
 export default Reimburse;
